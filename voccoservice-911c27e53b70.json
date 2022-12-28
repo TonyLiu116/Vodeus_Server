@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "voccoservice",
+  "private_key_id": "911c27e53b707cc86b4a0dc0805393c25c801157",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC+TZHB4cLtvvgZ\n/XWLkRAGSvjnBnh8OEWB6yFI3HbH84fqievZj5YmZeRT+QRVTQNayGrpxt2+E0nc\nD48kLuoLnIC1mTOwRTeaVyweGmK8n52kSIRIm/RzmzTS0Hkjorh0odJmsWgAfgpw\nuOQFgIsjvid6I+HJ2eO+sbRVt4DJybppYZZOH/564KrYu5dsSiv+Vkggfe8F0QZk\ntHr/r+0KWS/eoLoGB2bOE21EU7jqD+r33jEeg1topwNcg2CeCBgMRjHgxS7umtWx\nxRP2sMvmNygqmL/jcf5VeETNhB2LYkM7rEKtoeqI1A2IQgGxhrT6qYs//sVpcbd0\nnClzOYunAgMBAAECggEABhzFtr2CnlJI88TBVsdFBX64+eqqSgsgqGid/BIgupFm\n5zCg468J+pfBOrU/32GG3w6a6IFbs/Q4phnV1iqvl8niFHMkRuAiRhHQt/LPAxH5\nZUJzBUYFFwWAL9lEWtGqLQzZjjTai1GBElfN8yNK1M4RxImMggg+mWxpx2sKdvC2\nmh23l27COLcoGbyHw1uzyzDt48Mg3vdk4vEoapu+SevdX7kPPAXHNa/hyWpbD3U0\nv5yKBj/wO03LI1kMdag9uTPuPdOYZUygSQPyoiNLDQgLDNmW+ziYVyJDUKFfyFd8\nma0z+1BAhTx6nFtnSC8UxPbPYIKfLpxXkfeL7XUq2QKBgQDoy+QMUEDWV+BeFstn\nmwFRxeHzepTt91LCx2TFzZJ/RJxBRNTVcibDWgyTyh2Aze7GjtOgP0CW46OPdif5\nczg0J2qAIKFeueSWxDa6p0qhIE/oRTILG7JHlzWa8UqYJeVLbFEfxgT4vvzwHCIS\nl2srpLvA0kSoghg8FXZvMNk3wwKBgQDRRWb0Q+ElCecGuGAiNc3CZZt7HbLuErev\nM/y4/ofax8lsKGX8ChX/0v9AcwToOzsFa66MJ6BaUe6aUCO6BeCgdxTrymAbf5/M\nKrM9sW4MkrEe841me6tV+HDSnUQNJ09ejhKS2Xoux6a7Djxvk+v9mCOAz/4C+K1A\nty69a7bCTQKBgQCnWEIj0+D39A22tT4cySFmrhAiHaFHev3ERN+dDYzc7e5BQQCa\nO0fAMFBQQP96Yw7dLzjTvgRpM1SVQUO1Hu1tGFSHrG00Ef9PndcV0EJmlzq55lv1\n/j/nFLyVGBUeUEeHM2MRqyBRy8E5vY+Eu9Jveij5kG2IkJRpRKhxf7T2TwKBgQC/\niueF8c9USHEFzKJpDZgMM1YRZQiOMeGgYlQRux7719t7vKpD+7NRGX36LoyyRuxp\ntLrpm6eAo/dhlLJupMyJ8xTaELzQzoqjo/21HP6eUXH+42tr/wu+v4v8qmdMJsvV\nvvIvKRFVWfY4xfn5Iopg7eypDTbw304sqr4EMF/yDQKBgQDPerbV1NY/fEy2bRvf\nZtAVESylP9mq8AQ0NBTcKtoK6VdiTqwbVgR96niSb9/rBPfznUNvbm9yEg/KHNvK\nG/7G6rRT4KAzAzqjNwzSCQxnU9Da282qdKl3dJhKiFQPbn9e8dFFZYFZvtzXff1q\nUsRwHEsbhAHiSC9AdOThiLoGFw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "voccoservice@appspot.gserviceaccount.com",
+  "client_id": "116858488647401836341",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/voccoservice%40appspot.gserviceaccount.com"
+}

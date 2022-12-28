@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pioneering-tome-342312",
+  "private_key_id": "78aacbafd7e5f2ea98ed50ce75c18841db2203bb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDKA13ofUu51gWj\n2EOZiS+CaYvklCBDFZk6Wm/pqA+y6fUP9KL4Ws7wProxy2y9Xe7977QpciM4Oi76\nkjzqatV1VttUcBrXVR6Q1MLxnryz78jZejelz+I43F6lMg9ToaUWLNybBb77Dskt\nJ0ngWSkvWxHiUTncLqEdQUIZAhPWqwq/vbCR2AnvvWXCtGTe8TUgDpoZGJxYydUv\nbQs3ntI0vAUFLv8KIBFJofGo/zPeM6y4ESoGYa/FfTkEMhgXvZBkR6KCCmPMA0Qr\n+HbqLfaL2m7czy5lI53RrqVtJLvvRiYodQDWQLCn2c7WW2saLWEymtwd50r2SVUB\n0a4NehIDAgMBAAECggEAUMRw1uPFk4rk3WG5gVjulFMTufOZRIkNpt2CsiZeBHfy\n4Yq7X9WauEY0FnWRR9MXGxMr8oguWaw1nTw7u7O0HYJ5FbTunlprapeOS6FeLAj6\nQi1Rs2s+tOIyuxSdOSA/S3LrTtXIykLan0F+kYLEaykbqOM14XkJNJOjVDFW8jPg\no7anAU8uWzylZDVtow6tgAgk1rEq/Vj6zpfukFt97l5zAQ7HgrifYQzCL9GRCYYo\nBmyfOCgTBXT5GvSufrCeMh/X6y4nVRY61Rj+8ZqazO9/Vx9nQkPyV2o/SBhhn95l\nGjRxAIVgqiZwzCPGT2kcKuzbuP5BbQmUYvxdokN/TQKBgQD9VyndzWLQQVkWTTIY\n6wK7yWh4F7UBShOajtuSmI1p2qgz7UnhvJSXvAWSH/tZ7wOO0AqHHz2BXfbEVWiz\nDDs32dkgkOQ9VoiD+VneA69JSDbZEEhu4RYcmezL/nc9EsxmpUI36cGOT5XsP7rM\nabgSsn7O/BlnJh4OcEejfwbSlQKBgQDMIkOsKBEV4S+1BmzWmFRKxvbTNORTD85u\nzbLeW+r26b4PsecNm3gyj+4Mb2o+MZzaK3PavG775xQK+y5OJStLtdW0E6p7DjWY\nHOSAa6aHompatVvyVolzmsViWfuu5e7Mb/NwS4p68v4aXChlF81EBs3jrdu4X2Nn\nx/w8xzaENwKBgQCNZHVwXm3071PqV4FLWPa4mgtdY1XZd1+DlpHDurLKTogsGxZu\nD5MbMIwnZwQgyH5C2afWjEAGkMvl/gkmTQBMBqDhRRytgztD9QoMGCBflRdPhH/4\nqlVt9xarL8Wa53//FeLkU+l8JLz3EwaNib97Z/XQTfFbmXGS+2VwQbgsFQKBgCxA\ndUkZunJyyYPFq8xtY0B+lz075w82ivqsLs1TQcFa9G+0kjD59fmICAO8F1z6JlWJ\nO+k8FhcXhdnHj8cy+YrFFVmfNcLNVsLt6H8KVyRqCgI19IO5TLy53XYvqYbFo5m/\n3xcF2TRD/t+6AKvBmCbaDsH/i3URgJwb10tZqDDLAoGAFf6VOc1W37u6JHuVuC5j\nLHfhZmom3mEKaRuH6XCcA9osp97SQFO96KbTgjbb1RCERGqs9vfdlcpWJW0jrzAh\nk7Ayb5MU+Qlv0YcPMjjYQ3eGKP5vu8Ufyqmwam7I5rSKYyu1pqo6wG3cEFhEBS/Z\n8FqunZ2QFQ1qvsLuWXXIDCc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "vocco-storage-0@pioneering-tome-342312.iam.gserviceaccount.com",
+  "client_id": "112624130829724541842",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/vocco-storage-0%40pioneering-tome-342312.iam.gserviceaccount.com"
+}

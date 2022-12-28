@@ -1,0 +1,58 @@
+{
+    "app": {
+        "host": "localhost",
+        "port": 80,
+        "domain": "https://ec2-18-117-55-156.us-east-2.compute.amazonaws.com",
+        "domain_description": "part of links files in database",
+        "backend_api_prefix": "",
+        "backend_api_prefix_description": "sets global prefix for all endpoints, example: ip:port/prefix/endpointName,  leave empty for ip:port/endpointName",
+        "access_token_ttl": 900000,
+        "refresh_token_ttl": 900000,
+        "token_secret": "TOKEN-SECRET-KEY",
+        "smtp_mail": "testemailsssender@gmail.com",
+        "smtp_host": "smtp.gmail.com",
+        "smtp_port": 465,
+        "smtp_tls": true,
+        "smtp_secure": false,
+        "smtp_user": "testemailsssender@gmail.com",
+        "smtp_pass": "aabzfwtsstwuygfa",
+        "aws_region": "sa-east-1",
+        "aws_access_key_id": "AKIAXUPQNVOESTO5NDOM",
+        "aws_secret_access_key": "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",
+        "aws_public_bucket_name": "vodienstorage",
+        "google_auth_client_id": "971245597385-m0an1nlhvq1456pcd6tkj136kpefppvn.apps.googleusercontent.com",
+        "google_auth_client_secret": "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",
+        "twilio_server_sid": "VAa65a34b450a08f389a11c59abc94afd4",
+        "twilio_account_sid": "AC22a0b39d7a86dfbcc37c06ab82abf138",
+        "twilio_auth_token": "d683dd598b93b51fd4c90bb0ea62625a"
+    },
+
+    "database2": {
+        "database_address": "localhost",
+        "database_port": 5432,
+        "database_name": "postgres",
+        "database_login": "postgres",
+        "database_password": "postgres"
+    },
+    "database1": {
+        "database_address": "172.17.0.1",
+        "database_port": 5432,
+        "database_name": "postgres",
+        "database_login": "postgres",
+        "database_password": "postgres"
+    },
+    "database0": {
+        "database_address": "34.122.31.207",
+        "database_port": 5432,
+        "database_name": "postgres",
+        "database_login": "postgres",
+        "database_password": "postgres"
+    },
+    "database": {
+        "database_address": "database-1.cfh7cxi6svqc.sa-east-1.rds.amazonaws.com",
+        "database_port": 5432,
+        "database_name": "postgres",
+        "database_login": "postgres",
+        "database_password": "postgres"
+    }
+}
