@@ -331,8 +331,8 @@ export class RecordsService {
     let friends = [];
     if (followers && followers.length > 0) {
       friends = followers.map((item) => item.friend.id);
-      friends.push(me);
     }
+    friends.push(me);
     await queryBuilder.andWhere({ user: In(friends) })
     // let rdate = new Date(year, month), ldate;
     // ldate = new Date(year, month - 1);
