@@ -194,8 +194,10 @@ export class ActionsService {
     // if (todayLimit >= this.recordLimit) {
     //   throw new BadRequestException("limit for today is exhausted");
     // }
+    console.log("0000000000000000000000000000000");
     const uploadVoiceFile = await this.filesService.uploadFile(voiceFile[0].buffer, voiceFile[0].originalname, FileTypeEnum.AUDIO);
     const uploadImageFile = await this.filesService.uploadFile(imageFile[0].buffer, imageFile[0].originalname, FileTypeEnum.IMAGE);
+    console.log("1111111111111111111111111111111111");
     const rand = Math.floor(Math.random() * (3));
     const entity = new RecordsEntity();
     entity.title = body.title;

@@ -58,6 +58,7 @@ export class ActionsController {
     @Body() body: RecordDto
   ) {
     const user = request.user;
+    console.log("Controller", "++++++++++++++++++++++++++++++++++++++++++++++++");
     return this.actionsService.addRecord(body, user, files.file, files.imageFile, isPast);
   }
 
