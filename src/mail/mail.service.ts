@@ -71,7 +71,7 @@ export class MailsService {
             })
         try {
             const res = await admin.messaging().sendToDevice(registrationIds, {
-                notification: { title: 'Vocco', body: description }
+                notification: { title: 'Voiceden', body: description }
             });
 
             // return error message if any error create in fcm process
