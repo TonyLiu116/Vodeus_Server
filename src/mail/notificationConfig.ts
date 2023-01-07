@@ -9,7 +9,8 @@ export const notificationSettings = {
         token: {
            // key: './AuthKey_958P83H5TJ.p8', // optionally: fs.readFileSync('./certs/key.p8')
             key: './AuthKey_28RZ322Y6Q.p8',
-            keyId: '958P83H5TJ',
+            //keyId: '958P83H5TJ',
+            keyId: '28RZ322Y6Q',
             teamId: 'SF6VT86H77',
         },
         production: true // true for APN production environment, false for APN sandbox environment,
