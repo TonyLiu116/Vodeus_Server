@@ -64,7 +64,7 @@ export class MailsService {
     // }
 
     public async sentNotify(registrationIds, description, params): Promise<string> {
-        let data = { title: 'Vocco', body: description, topic: 'org.vocco', custom: params, invokeApp: false };
+        let data = { title: 'Voiceden', body: description, topic: 'org.voiceden', custom: params, invokeApp: false };
         this.push
             .send(registrationIds, data, (err, result) => {
                 console.log(err);
