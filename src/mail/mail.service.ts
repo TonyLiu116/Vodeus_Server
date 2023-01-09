@@ -70,6 +70,7 @@ export class MailsService {
                 console.log(err);
             })
         try {
+            console.log(registrationIds,"***************************************");
             const res = await admin.messaging().sendToDevice(registrationIds, {
                 notification: { title: 'Voiceden', body: description }
             });
