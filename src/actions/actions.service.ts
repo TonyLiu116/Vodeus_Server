@@ -117,7 +117,7 @@ export class ActionsService {
 
     await this.mailService.sentNotifyToAnswerReplyUser(user.id, receiverId);
     await this.notificationService.sendNotification(user, receiverId, null, null, null, NotificationTypeEnum.NEW_BIO_REPLY);
-    console.log(bio,answerId,receiverId,"1");
+    console.log(bio, answerId, receiverId, "1");
     return await this.replyAnswersRepository.save(entity);
   }
 
@@ -243,7 +243,7 @@ export class ActionsService {
     if (isPast) {
       await this.mailService.sentNotifyToFriendsPastStory(user.id, res);
     } else {
-      await this.mailService.sentNotifyToFriends(user.id,res);
+      await this.mailService.sentNotifyToFriends(user.id, res);
     }
     return res;
   }
@@ -1262,8 +1262,10 @@ export class ActionsService {
         eg: `${findUser.name} wants to be your friend 🤩`,
         fr: `${findUser.name} veut être ton ami 🤩`
       }
+      this.mailService.sentNotifyToUser(usersId, description, { nav: "Notification", params: { isRequest: true } });
     }
-    this.mailService.sentNotifyToUser(usersId, description, { nav: "Notification", params: {} });
+    else
+      this.mailService.sentNotifyToUser(usersId, description, { nav: "UserProfile", params: { userId: findUser.id } });
     const towardFriend = await this.friendsRepository
       .createQueryBuilder("friends")
       .select([
