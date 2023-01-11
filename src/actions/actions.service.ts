@@ -716,7 +716,7 @@ export class ActionsService {
         eg: `${sender.name} has sent you a message 🤭`,
         fr: `${sender.name} t'a envoyé un message vocal 🤭`,
       }
-    await this.mailService.sentNotifyToUser(usersId, description, { nav: "Conversation", params: { info: { user: sender } } });
+    await this.mailService.sentNotifyToUser(usersId, description, { nav: "Conversation", params: {senderId: sender.id } });
     // await this.mailService.sentNotifyToUser(usersId, description, { nav: "Notification", params: {} });
     // await this.mailService.sentNotifyToUser(usersId, description, { nav: "Conversation", params: { info: { user: sender } } });
     return this.MessagesRepository.save(entity);
