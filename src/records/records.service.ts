@@ -266,7 +266,6 @@ export class RecordsService {
     if (friend == 'discover') {
       await queryBuilder.andWhere({ privacy: false });
       await queryBuilder.andWhere({ user: { isPrivate: false } });
-      await queryBuilder.andWhere({ user: Not(me) });
     }
     let records = await queryBuilder
       .orderBy("records.createdAt", order.toUpperCase())
