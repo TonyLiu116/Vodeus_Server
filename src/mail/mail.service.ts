@@ -104,7 +104,7 @@ export class MailsService {
         this.sentNotify(deviceTokens.eg, description.eg, params);
     }
 
-    async sentNotifyToFriends(userId,record) {
+    async sentNotifyToFriends(userId,recordId,createdAt) {
         const findUsers = await this.recordsService.findUsersByFriendId(userId);
         if (findUsers.length == 0)
             return;
@@ -112,11 +112,11 @@ export class MailsService {
         const deviceTokens = await this.usersService.findDevicesWithUser(usersId);
         const sender = await this.usersService.findById(userId);
 
-        this.sentNotify(deviceTokens.fr, `${sender.name} a posté une nouvelle histoire`, { nav: "Home", params: {targetRecord:record} });
-        this.sentNotify(deviceTokens.eg, `${sender.name} has posted a new story`, { nav: "Home", params: {targetRecord:record} });
+        this.sentNotify(deviceTokens.fr, `${sender.name} a posté une nouvelle histoire`, { nav: "Home", params: {targetRecordId:recordId,createdAt} });
+        this.sentNotify(deviceTokens.eg, `${sender.name} has posted a new story`, { nav: "Home", params: {targetRecordId:recordId,createdAt} });
     }
 
-    async sentNotifyToFriendsPastStory(userId,record) {
+    async sentNotifyToFriendsPastStory(userId,recordId,createdAt) {
         const findUsers = await this.recordsService.findUsersByFriendId(userId);
         if (findUsers.length == 0)
             return;
@@ -125,15 +125,15 @@ export class MailsService {
         const deviceTokens = await this.usersService.findDevicesWithUser(usersId);
         const sender = await this.usersService.findById(userId);
 
-        this.sentNotify(deviceTokens.fr, `${sender.name} a partagé un moment avec toi 🥺`, { nav: "Home", params: {targetRecord:record} });
-        this.sentNotify(deviceTokens.eg, `${sender.name} has shared a great moment with you 🥺`, { nav: "Home", params: {targetRecord:record} });
+        this.sentNotify(deviceTokens.fr, `${sender.name} a partagé un moment avec toi 🥺`, { nav: "Home", params: {targetRecordId:recordId,createdAt} });
+        this.sentNotify(deviceTokens.eg, `${sender.name} has shared a great moment with you 🥺`, { nav: "Home", params: {targetRecordId:recordId,createdAt} });
     }
 
-    async sentNotifyToStoryOwner(userId, receiverId,record) {
+    async sentNotifyToStoryOwner(userId, receiverId,recordId, createdAt) {
         const deviceTokens = await this.usersService.findDevicesWithUser([receiverId]);
         const sender = await this.usersService.findById(userId);
-        this.sentNotify(deviceTokens.fr, `${sender.name} a commenté ton histoire !`, { nav: "Home", params: {targetRecord:record} });
-        this.sentNotify(deviceTokens.eg, `${sender.name} has commented your story`, { nav: "Home", params: {targetRecord:record} });
+        this.sentNotify(deviceTokens.fr, `${sender.name} a commenté ton histoire !`, { nav: "Home", params: {targetRecordId:recordId,createdAt} });
+        this.sentNotify(deviceTokens.eg, `${sender.name} has commented your story`, { nav: "Home", params: {targetRecordId:recordId,createdAt} });
     }
 
     async sentNotifyToCommentedUser(userId, receiverId) {

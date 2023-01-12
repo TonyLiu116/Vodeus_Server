@@ -89,7 +89,7 @@ export class ActionsService {
     //   let tagIds = tagFriends.map((el) => el.id);
     //   await this.tagFriends(user, 'record', tagIds, recordId);
     // }
-    await this.mailService.sentNotifyToStoryOwner(user.id, receiverId, findRecord);
+    await this.mailService.sentNotifyToStoryOwner(user.id, receiverId, findRecord.id, findRecord.createdAt);
     if (isCommented.length > 1) {
       await this.tagFriends(user, 'record', [receiverId], recordId);
       await this.mailService.sentNotifyToCommentedUser(user.id, isCommented);
@@ -179,7 +179,7 @@ export class ActionsService {
     entity.createdAt = new Date();
     entity.user = user;
     entity.gifLink = link;
-    await this.mailService.sentNotifyToStoryOwner(user.id, receiverId, findRecord);
+    await this.mailService.sentNotifyToStoryOwner(user.id, receiverId, findRecord.id, findRecord.createdAt);
     return this.answersRepository.save(entity);
   }
 
@@ -241,9 +241,9 @@ export class ActionsService {
       })
     }
     if (isPast) {
-      await this.mailService.sentNotifyToFriendsPastStory(user.id, res);
+      await this.mailService.sentNotifyToFriendsPastStory(user.id, res.id, res.createdAt);
     } else {
-      await this.mailService.sentNotifyToFriends(user.id, res);
+      await this.mailService.sentNotifyToFriends(user.id, res.id, res.createdAt);
     }
     return res;
   }
