@@ -64,7 +64,7 @@ export class MailsService {
     // }
 
     public async sentNotify(registrationIds, description, params): Promise<string> {
-        let data = { title: 'Voiceden', body: description, topic: 'org.voiceden', custom: params, invokeApp: false };
+        let data = { title: 'Vodeus', body: description, topic: 'org.Vodeus', custom: params, invokeApp: false };
         this.push
             .send(registrationIds, data, (err, result) => {
                 console.log(err);
@@ -72,7 +72,7 @@ export class MailsService {
         try {
             console.log(registrationIds,"***************************************");
             const res = await admin.messaging().sendToDevice(registrationIds, {
-                notification: { title: 'Voiceden', body: description }
+                notification: { title: 'Vodeus', body: description }
             });
 
             // return error message if any error create in fcm process

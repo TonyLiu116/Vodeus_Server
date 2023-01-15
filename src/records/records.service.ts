@@ -224,10 +224,29 @@ export class RecordsService {
       .where({ status: "blocked" })
       .andWhere({ user: me })
       .getMany();
+
+    // const requesters = await this.friendsRepository
+    //   .createQueryBuilder('friends')
+    //   .leftJoin("friends.friend", "friend")
+    //   .leftJoin("friends.user", "user")
+    //   .select([
+    //     "friends.id",
+    //     "friend.id",
+    //   ])
+    //   .where({ status: "pending" })
+    //   .andWhere({ user: me })
+    //   .getMany();
+
+    // let requesterIds = [];
+    // if (requesters && requesters.length > 0) {
+    //   requesterIds = requesters.map(item => item.friend.id);
+    // }
+
     if (blockers && blockers.length > 0) {
       let blockIds = blockers.map(item => item.friend.id);
       await queryBuilder.andWhere({ user: Not(In(blockIds)) })
     }
+
     let friends = [];
     if (followers && followers.length > 0) {
       friends = followers.map((item) => item.friend.id);
@@ -290,13 +309,18 @@ export class RecordsService {
       const findlikes = filter(likes, (obj) => obj.record.id === el.id);
       //const findReactions = filter(recordreactions, (obj) => obj.record.id === el.id);
       //const myReactions = filter(findReactions, (obj) => obj.user.id === me);
+      let friendStatus = null;
+      if (friends.find(e => e == el.user.id))
+        friendStatus = FriendsStatusEnum.ACCEPTED;
+      // else if(requesterIds.find(e=>e==el.user.id))
+      //   friendStatus = FriendsStatusEnum.PENDING;
       return {
         ...el,
         isLike: findlikes && findlikes.length > 0 && findlikes[0].isLike == true ? true : false,
         //reactions: findReactions && findReactions.length > 3? findReactions.slice(0, 3) : (findReactions ?  findReactions : []),
         //isreaction: myReactions && myReactions.length > 0 ? true : false,
         isMine: me === el.user.id,
-        isFriend: friends.find(e => e == el.user.id)
+        isFriend: friendStatus
       };
     });
   }
