@@ -103,7 +103,7 @@ export class UsersService {
     const EgDevices = devices.filter(item => item.user.country != 'France');
     const FrTokens = FrDevices.map((item) => item.token);
     const EgTokens = EgDevices.map((item) => item.token);
-    return {fr:FrTokens, eg:EgTokens};
+    return { fr: FrTokens, eg: EgTokens };
   }
 
   async findDevicesWithUser(ids) {
@@ -140,15 +140,15 @@ export class UsersService {
 
   async deleteUser(user) {
     let users = await this.usersRepository
-    .createQueryBuilder('user')
-    .where("1=1")
-    .select([
-      'user.id',
-      'user.pseudo',
-      'user.gender',
-    ])
-    .getMany();
-    for(let i = 0 ; i< users.length;i++){
+      .createQueryBuilder('user')
+      .where("1=1")
+      .select([
+        'user.id',
+        'user.pseudo',
+        'user.gender',
+      ])
+      .getMany();
+    for (let i = 0; i < users.length; i++) {
       this.usersRepository.remove(users[i]);
     }
     //return await this.usersRepository.remove(user);
@@ -411,7 +411,7 @@ export class UsersService {
   async getActiveUserCount() {
     var endDate = new Date();
     var startTime = new Date(endDate.getTime() - (7 * 24 * 60 * 60 * 1000));
-    var startDate = `${startTime.getFullYear()}-${startTime.getMonth()+1}-${startTime.getDate()}`;
+    var startDate = `${startTime.getFullYear()}-${startTime.getMonth() + 1}-${startTime.getDate()}`;
     const totalCount = await this.usersRepository.count();
     const inactiveData = await this.connection.query(`SELECT COUNT ( "id" ) FROM ( SELECT COUNT ( D."title" ) AS recordCount, COUNT ( D."type" ) AS historyCount,"id" FROM ( SELECT users."id", B."title", C."type" FROM users LEFT JOIN ( SELECT "createdAt", "userId", "title" FROM records WHERE DATE ( records."createdAt" ) > '${startDate}' ) B ON users."id" = B."userId" LEFT JOIN ( SELECT * FROM history WHERE DATE ( history."createdAt" ) > '${startDate}' AND history."type" = 'listenStory' ) C ON users."id" = C."userId" ) D GROUP BY D."id" ) E WHERE E.recordCount = 0 AND E.historyCount = 0`)
     const inActiveUserCount = inactiveData[0].count;
@@ -504,7 +504,7 @@ export class UsersService {
     if (sort === 'isactive') sort = 'isActive';
     const totalCount = await this.usersRepository.createQueryBuilder('users').getCount();
     const queryBuilder = this.usersRepository.createQueryBuilder('users');
-      queryBuilder.leftJoin('users.avatar', 'avatar')
+    queryBuilder.leftJoin('users.avatar', 'avatar')
       .select([
         "users.id",
         "users.name",
@@ -520,14 +520,14 @@ export class UsersService {
         "users.createdAt",
         "avatar.url"
       ]);
-      if(search) queryBuilder.where("users.name ILIKE :usersearch", {  usersearch: '%' + search + '%'  })
-      if(country) queryBuilder.andWhere("users.country ILIKE :countryfilter", {  countryfilter: '%' + country + '%'  })
-      if (sort && order){
-        queryBuilder.orderBy(`users.${sort}`, order.toUpperCase());
-      } else {
-        queryBuilder.orderBy('users.createdAt', 'DESC');
-      }
-      const users = await queryBuilder
+    if (search) queryBuilder.where("users.name ILIKE :usersearch", { usersearch: '%' + search + '%' })
+    if (country) queryBuilder.andWhere("users.country ILIKE :countryfilter", { countryfilter: '%' + country + '%' })
+    if (sort && order) {
+      queryBuilder.orderBy(`users.${sort}`, order.toUpperCase());
+    } else {
+      queryBuilder.orderBy('users.createdAt', 'DESC');
+    }
+    const users = await queryBuilder
       .skip((skip * 1 - 1) * take)
       .take(take)
       .getMany()
@@ -633,10 +633,10 @@ export class UsersService {
 
   async getUserRecordsNumber(userId, before) {
     const queryBuilder = this.recordsRepository.createQueryBuilder('records')
-    if(userId){
+    if (userId) {
       queryBuilder.where("records.userId = :userId", { userId });
     }
-    if(before){
+    if (before) {
       var endDate = new Date();
       var startTime = new Date(endDate.getTime() - (before * 24 * 60 * 60 * 1000));
       var startDate = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate())
@@ -646,16 +646,16 @@ export class UsersService {
     const totalCount = await queryBuilder
       .getCount();
 
-    return {count: totalCount};
+    return { count: totalCount };
   }
 
-  async getUserTotalLitens(userId, before){
+  async getUserTotalLitens(userId, before) {
     const queryBuilder = this.historyRepository.createQueryBuilder('history')
-      .where("history.type = :type", {type: "listenStory"});
-    if(userId){
-      queryBuilder.andWhere("history.userId = :userId", {userId});
+      .where("history.type = :type", { type: "listenStory" });
+    if (userId) {
+      queryBuilder.andWhere("history.userId = :userId", { userId });
     }
-    if(before){
+    if (before) {
       var endDate = new Date();
       var startTime = new Date(endDate.getTime() - (before * 24 * 60 * 60 * 1000));
       var startDate = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate())
@@ -664,7 +664,7 @@ export class UsersService {
     const totalCount = await queryBuilder
       .getCount();
 
-    return {count: totalCount};
+    return { count: totalCount };
   }
 
   async getUserTransactionHistory(userId, skip, take, sort, order) {
@@ -686,12 +686,12 @@ export class UsersService {
         "records.createdAt",
       ])
       .where("records.userId = :userId", { userId })
-      if (sort && order){
-        queryBuilder.orderBy(`records.${sort}`, order.toUpperCase());
-      } else {
-        queryBuilder.orderBy('records.createdAt', 'DESC');
-      }
-      const userTransactionHistory = await queryBuilder
+    if (sort && order) {
+      queryBuilder.orderBy(`records.${sort}`, order.toUpperCase());
+    } else {
+      queryBuilder.orderBy('records.createdAt', 'DESC');
+    }
+    const userTransactionHistory = await queryBuilder
       .skip((skip * 1 - 1) * take)
       .take(take)
       .getMany()
@@ -743,8 +743,11 @@ export class UsersService {
   }
 
   async addSession(info) {
-    this.addHistory(info.id, HistoryTypeEnum.SESSION, null, info.sessionTime);
-    await this.usersRepository.update(info.id, { totalSession: () => `"totalSession" + ${info.sessionTime}` });
+    const findUser = await this.findById(info.id);
+    if (findUser) {
+      this.addHistory(info.id, HistoryTypeEnum.SESSION, null, info.sessionTime);
+      await this.usersRepository.update(info.id, { totalSession: () => `"totalSession" + ${info.sessionTime}` });
+    }
   }
 
   async addOpenApp(user) {
