@@ -139,19 +139,7 @@ export class UsersService {
   }
 
   async deleteUser(user) {
-    let users = await this.usersRepository
-      .createQueryBuilder('user')
-      .where("1=1")
-      .select([
-        'user.id',
-        'user.pseudo',
-        'user.gender',
-      ])
-      .getMany();
-    for (let i = 0; i < users.length; i++) {
-      this.usersRepository.remove(users[i]);
-    }
-    //return await this.usersRepository.remove(user);
+    return await this.usersRepository.remove(user);
   }
 
   completeRegister(findUser: UsersEntity) {
