@@ -43,6 +43,7 @@ import {
         @Res() res,
         @Body() tokenData: AppleTokenVerificationDto
     ): Promise<LoginResponse> {
+      console.log(tokenData,"++++++++++++++++++++++++++++++++++++++++++++++++");
         const {user, isRegister} =  await this.authenticationService.appleAuthenticate(tokenData)
         return await this.authService.login( "", user, isRegister)
         .then((data) => res.json(data))
