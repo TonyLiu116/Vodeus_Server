@@ -94,7 +94,7 @@ export class GoogleAuthenticationService {
 
   async appleAuthenticate(info: AppleTokenVerificationDto) {
    
-    const appleInfo = jwt.decode(info.identityToken);
+    const appleInfo = jwt.decode(info.identityToken+'');
     console.log("-----------------------------------------");
     console.log(appleInfo);
     const sub = appleInfo.sub+'';
