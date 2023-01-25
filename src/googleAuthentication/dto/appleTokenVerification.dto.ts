@@ -2,7 +2,6 @@ import { IsString, IsNotEmpty } from 'class-validator';
 
 export class AppleTokenVerificationDto {
   @IsString()
-  @IsNotEmpty()
   nonce: string;
 
   @IsString()
@@ -10,7 +9,6 @@ export class AppleTokenVerificationDto {
   identityToken: string;
 
   @IsString()
-  @IsNotEmpty()
   code: string;
 }
 
