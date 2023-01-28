@@ -25,7 +25,7 @@ export class MailsService {
             .sendMail({
                 to: email,
                 from: this.configService.get('app.smtp_mail'),
-                subject: 'Welcome to Vocco! Confirm your Email',
+                subject: 'Welcome to Vodeus! Confirm your Email',
                 template: './index', // './' bugfix, undocumented in docs
                 context: { code },
             })

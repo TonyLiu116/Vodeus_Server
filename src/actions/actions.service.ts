@@ -188,16 +188,30 @@ export class ActionsService {
     return await this.recordsRepository.update(body.recordId, { imgFile: uploadFile });
   }
 
-  async addRecord(body: RecordDto, user, voiceFile, imageFile, isPast) {
-    // const todayLimit = await this.getTodayRecordCount(user);
+  async addRecordText(body: RecordDto, user, file) {
+    const uploadImageFile = await this.filesService.uploadFile(file.buffer, file.originalname, FileTypeEnum.IMAGE);
+    const entity = new RecordsEntity();
+    entity.imgFile = uploadImageFile;
+    entity.privacy = body.privacy;
+    entity.user = user;
+    entity.notSafe = body.notSafe;
+    entity.category = body.category;
+    entity.text = body.recordText;
+    const friends = await this.findUsersByFriendId(user.id);
+    const friendUsers = friends.map((el, index) => el.user.id);
+    const receivers = await this.usersRepository.find({ where: { id: In(friendUsers) } });
+    const res = await this.recordsRepository.save(entity);
+    console.log(res);
+    receivers.forEach(async el => {
+      await this.notificationService.sendNotification(user, el, res, null, null, NotificationTypeEnum.NEW_STORY);
+    })
+    await this.mailService.sentNotifyToFriends(user.id, res.id, res.createdAt);
+    return res;
+  }
 
-    // if (todayLimit >= this.recordLimit) {
-    //   throw new BadRequestException("limit for today is exhausted");
-    // }
-    console.log("0000000000000000000000000000000");
+  async addRecord(body: RecordDto, user, voiceFile, imageFile, isPast) {
     const uploadVoiceFile = await this.filesService.uploadFile(voiceFile[0].buffer, voiceFile[0].originalname, FileTypeEnum.AUDIO);
     const uploadImageFile = await this.filesService.uploadFile(imageFile[0].buffer, imageFile[0].originalname, FileTypeEnum.IMAGE);
-    console.log("1111111111111111111111111111111111");
     const rand = Math.floor(Math.random() * (3));
     const entity = new RecordsEntity();
     entity.title = body.title;
@@ -716,7 +730,7 @@ export class ActionsService {
         eg: `${sender.name} has sent you a message 🤭`,
         fr: `${sender.name} t'a envoyé un message vocal 🤭`,
       }
-    await this.mailService.sentNotifyToUser(usersId, description, { nav: "Conversation", params: {senderId: sender.id } });
+    await this.mailService.sentNotifyToUser(usersId, description, { nav: "Conversation", params: { senderId: sender.id } });
     // await this.mailService.sentNotifyToUser(usersId, description, { nav: "Notification", params: {} });
     // await this.mailService.sentNotifyToUser(usersId, description, { nav: "Conversation", params: { info: { user: sender } } });
     return this.MessagesRepository.save(entity);
@@ -1331,7 +1345,7 @@ export class ActionsService {
     }
     this.twilioClient.messages
       .create({
-        body: `Gosh, these stories are crazy! Download Vocco app for free!`,
+        body: `Gosh, these stories are crazy! Download Vodeus app for free!`,
         messagingServiceSid: 'MG6063d6266081e91c2ba70b7fa3807b21',
         to: phoneNumber
       })

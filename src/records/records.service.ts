@@ -154,6 +154,7 @@ export class RecordsService {
       .leftJoin("records.imgFile", "imgFile")
       .select([
         "records.id",
+        "records.text",
         "records.title",
         "records.emoji",
         "records.category",

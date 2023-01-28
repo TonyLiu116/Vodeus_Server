@@ -15,6 +15,9 @@ export class RecordDto {
   @ApiModelProperty({ type: 'string'})
   category: string;
 
+  @ApiModelProperty({ type: 'string'})
+  recordText: string;
+
   @ApiModelProperty({ type: 'string', nullable:true})
   address: string;
 

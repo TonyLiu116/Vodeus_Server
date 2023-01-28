@@ -58,8 +58,21 @@ export class ActionsController {
     @Body() body: RecordDto
   ) {
     const user = request.user;
-    console.log("Controller", "++++++++++++++++++++++++++++++++++++++++++++++++");
     return this.actionsService.addRecord(body, user, files.file, files.imageFile, isPast);
+  }
+
+  @Post("addText")
+  @ApiConsumes("multipart/form-data")
+  @ApiResponse({ status: HttpStatus.CREATED, description: "The file has been uploaded" })
+  @UseInterceptors(FileInterceptor("file"))
+  async addText(
+    @Req() request,
+    @UploadedFile() file,
+    @Body() body: RecordDto
+  ) {
+    const user = request.user;
+    console.log("tttttttttttttttttttttt");
+    return this.actionsService.addRecordText(body, user, file);
   }
 
   @Post("recordImage")

@@ -1,7 +1,7 @@
 {
     "app": {
-        "host": "127.0.0.1",
-        "port": 5432,
+        "host": "localhost",
+        "port": 80,
         "domain": "https://ec2-18-117-55-156.us-east-2.compute.amazonaws.com",
         "domain_description": "part of links files in database",
         "backend_api_prefix": "",
@@ -27,7 +27,7 @@
         "twilio_auth_token": "d683dd598b93b51fd4c90bb0ea62625a"
     },
 
-    "database2": {
+    "database": {
         "database_address": "localhost",
         "database_port": 5432,
         "database_name": "postgres",
@@ -35,21 +35,14 @@
         "database_password": "postgres"
     },
     "database1": {
-        "database_address": "172.17.0.1",
-        "database_port": 5432,
-        "database_name": "postgres",
-        "database_login": "postgres",
-        "database_password": "postgres"
-    },
-    "database0": {
-        "database_address": "34.122.31.207",
-        "database_port": 5432,
-        "database_name": "postgres",
-        "database_login": "postgres",
-        "database_password": "postgres"
-    },
-    "database": {
         "database_address": "database-1.cfh7cxi6svqc.sa-east-1.rds.amazonaws.com",
+        "database_port": 5432,
+        "database_name": "postgres",
+        "database_login": "postgres",
+        "database_password": "postgres"
+    },
+    "database2": {
+        "database_address": "database-test.cfh7cxi6svqc.sa-east-1.rds.amazonaws.com",
         "database_port": 5432,
         "database_name": "postgres",
         "database_login": "postgres",

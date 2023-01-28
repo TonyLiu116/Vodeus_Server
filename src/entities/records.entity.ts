@@ -34,6 +34,9 @@ export class RecordsEntity {
   @Column({ nullable: true })
   address: string;
 
+  @Column({ nullable: true })
+  text: string;
+
   @Column({ nullable: false })
   category: string;
 
