@@ -27,7 +27,7 @@
         "twilio_auth_token": "d683dd598b93b51fd4c90bb0ea62625a"
     },
 
-    "database": {
+    "database0": {
         "database_address": "localhost",
         "database_port": 5432,
         "database_name": "postgres",
@@ -41,7 +41,7 @@
         "database_login": "postgres",
         "database_password": "postgres"
     },
-    "database2": {
+    "database": {
         "database_address": "database-test.cfh7cxi6svqc.sa-east-1.rds.amazonaws.com",
         "database_port": 5432,
         "database_name": "postgres",
