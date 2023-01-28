@@ -7,9 +7,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build": "nest build --max-old-space-size=8192",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
+    "start": "nest start --max-old-space-size=8192",
     "start:dev": "ts-node-dev --no-notify --respawn --transpile-only src/main.ts &",
     "start:debug": "nest start --debug --watch &",
     "start:prod": "node dist/main &",
