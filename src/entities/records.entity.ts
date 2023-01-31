@@ -25,7 +25,7 @@ export class RecordsEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, default:'' })
   title: string;
 
   @Column({ nullable: true })
