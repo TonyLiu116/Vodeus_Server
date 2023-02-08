@@ -743,6 +743,10 @@ export class UsersService {
     await this.usersRepository.update(user.id, { openAppCount: () => '"openAppCount" + 1' });
   }
 
+  async addScore(user, addValue) {
+    await this.usersRepository.update(user.id, { score: () => `"score" + ${addValue}` });
+  }
+
   async addHistory(userId, historyType, storyType = null, value = 0) {
     const history = new HistoryEntity();
     history.user = userId;

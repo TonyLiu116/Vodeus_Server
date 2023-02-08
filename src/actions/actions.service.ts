@@ -89,6 +89,7 @@ export class ActionsService {
     //   let tagIds = tagFriends.map((el) => el.id);
     //   await this.tagFriends(user, 'record', tagIds, recordId);
     // }
+    await this.usersService.addScore(user,3);
     await this.mailService.sentNotifyToStoryOwner(user.id, receiverId, findRecord.id, findRecord.createdAt);
     if (isCommented.length > 1) {
       await this.tagFriends(user, 'record', [receiverId], recordId);
@@ -115,9 +116,9 @@ export class ActionsService {
     entity.createdAt = new Date();
     entity.user = user;
 
+    await this.usersService.addScore(user,3);
     await this.mailService.sentNotifyToAnswerReplyUser(user.id, receiverId);
     await this.notificationService.sendNotification(user, receiverId, null, null, null, NotificationTypeEnum.NEW_BIO_REPLY);
-    console.log(bio, answerId, receiverId, "1");
     return await this.replyAnswersRepository.save(entity);
   }
 
@@ -130,7 +131,7 @@ export class ActionsService {
     if (!findAnswer) {
       throw new NotFoundException("record not found");
     }
-
+    await this.usersService.addScore(user,3);
     const entity = new ReplyAnswersEntity();
     entity.answer = findAnswer;
     entity.type = AnswerTypeEnum.GIF;
@@ -173,6 +174,8 @@ export class ActionsService {
     if (!findRecord) {
       throw new NotFoundException("record not found");
     }
+
+    await this.usersService.addScore(user,3);
     const entity = new AnswersEntity();
     entity.type = AnswerTypeEnum.GIF;
     entity.record = findRecord;
@@ -250,6 +253,7 @@ export class ActionsService {
         await this.notificationService.sendNotification(user, el, res, null, null, NotificationTypeEnum.POST_OLD_STORY);
       })
     } else {
+      await this.usersService.addScore(user,8);
       receivers.forEach(async el => {
         await this.notificationService.sendNotification(user, el, res, null, null, NotificationTypeEnum.NEW_STORY);
       })
@@ -299,6 +303,7 @@ export class ActionsService {
     entity.emoji = emoji;
 
     if (findRecord.user.id != user.id) {
+      await this.usersService.addScore(user,3);
       const touser = await this.usersRepository.findOne({ where: { id: findRecord.user.id } });
       await this.notificationService.sendNotification(user, touser, findRecord, entity, null, NotificationTypeEnum.NEW_ANSWER);
       let usersId = [];
@@ -648,6 +653,7 @@ export class ActionsService {
     entity.createdAt = new Date();
     entity.user = user;
 
+    await this.usersService.addScore(user,3);
     await this.mailService.sentNotifyToAnswerReplyUser(user.id, receiverId);
     await this.notificationService.sendNotification(user, receiverId, answer.record, null, null, NotificationTypeEnum.NEW_REPLY);
 
@@ -763,6 +769,7 @@ export class ActionsService {
 
     if (record.user.id != user.id) {
       const touser = await this.usersRepository.findOne({ where: { id: record.user.id } });
+      await this.usersService.addScore(user,1);
       await this.notificationService.sendNotification(user, touser, record, null, null, NotificationTypeEnum.LIKE_RECORD);
     }
 
@@ -949,6 +956,7 @@ export class ActionsService {
     }
     if (answer.user.id != user.id) {
       const touser = await this.usersRepository.findOne({ where: { id: answer.user.id } });
+      await this.usersService.addScore(user,1);
       await this.notificationService.sendNotification(user, touser, answer.record, answer, null, NotificationTypeEnum.LIKE_ANSWER);
     }
 
@@ -1091,6 +1099,7 @@ export class ActionsService {
     //   const touser = await this.usersRepository.findOne({ where: { id: replyAnswer.user.id } });
     //   await this.notificationService.sendNotification(user, touser, replyAnswer.record, replyAnswer, null, NotificationTypeEnum.LIKE_ANSWER);
     // }
+    await this.usersService.addScore({id:userId},1);
     await this.replyAnswersRepository.update(replyAnswerId, { likesCount: replyAnswer.likesCount + 1 });
 
     const existing = await this.likesRepository
@@ -1343,6 +1352,7 @@ export class ActionsService {
     if (user.phoneNumber == phoneNumber) {
       throw new BadRequestException("error");
     }
+    await this.usersService.addScore(user,10);
     this.twilioClient.messages
       .create({
         body: `Gosh, these stories are crazy! Download Vodeus app for free!`,

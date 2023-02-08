@@ -120,6 +120,9 @@ export class UsersEntity {
   @Column({ nullable: true, default: 0 })
   totalSession: number
 
+  @Column({ nullable: true, default: 0 })
+  score: number
+
   @Column({ default: false })
   isRegisteredWithGoogle: boolean;
 
