@@ -54,6 +54,7 @@ export class AuthController {
     @Body() loginReq: LoginRequest
   ): Promise<LoginResponse> {
     const reqIp = ""; //req.headers["x-real-ip"] || req.connection.remoteAddress;
+    console.log("RRRRRRRRRRRRRRRRRRRRRRRRRRR", loginReq)
     return await this.authService.register(loginReq, reqIp)
       .then((data) => res.json(data))
       .catch(err => !err.status ? this.logger.error(err) : res.status(err.status).send(err.response));
