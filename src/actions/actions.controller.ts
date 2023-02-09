@@ -71,7 +71,6 @@ export class ActionsController {
     @Body() body: RecordDto
   ) {
     const user = request.user;
-    console.log("tttttttttttttttttttttt");
     return this.actionsService.addRecordText(body, user, file);
   }
 

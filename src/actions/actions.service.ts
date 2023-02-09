@@ -204,11 +204,11 @@ export class ActionsService {
     const friendUsers = friends.map((el, index) => el.user.id);
     const receivers = await this.usersRepository.find({ where: { id: In(friendUsers) } });
     const res = await this.recordsRepository.save(entity);
-    console.log(res);
     receivers.forEach(async el => {
       await this.notificationService.sendNotification(user, el, res, null, null, NotificationTypeEnum.NEW_STORY);
     })
     await this.mailService.sentNotifyToFriends(user.id, res.id, res.createdAt);
+    await this.usersService.addScore(user,8);
     return res;
   }
 
