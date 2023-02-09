@@ -1352,14 +1352,15 @@ export class ActionsService {
     if (user.phoneNumber == phoneNumber) {
       throw new BadRequestException("error");
     }
+    // await this.usersService.addScore(user,10);
+    // this.twilioClient.messages
+    //   .create({
+    //     body: `Gosh, these stories are crazy! Download Vodeus app for free!`,
+    //     messagingServiceSid: 'MG6063d6266081e91c2ba70b7fa3807b21',
+    //     to: phoneNumber
+    //   })
+    //   .then(message => console.log(message.sid));
     await this.usersService.addScore(user,10);
-    this.twilioClient.messages
-      .create({
-        body: `Gosh, these stories are crazy! Download Vodeus app for free!`,
-        messagingServiceSid: 'MG6063d6266081e91c2ba70b7fa3807b21',
-        to: phoneNumber
-      })
-      .then(message => console.log(message.sid));
     return 0;
   }
 
