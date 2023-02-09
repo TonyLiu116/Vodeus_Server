@@ -23,6 +23,19 @@ export class AccountService {
   ) {
   }
 
+  async checkNewDay(user) {
+    const findUser = await this.usersService.findById(user.id);
+    if (findUser) {
+      await this.usersService.updateLastLogin(user);
+      let nowDay = new Date();
+      if (findUser.lastLogin && findUser.lastLogin.getFullYear() == nowDay.getFullYear() && findUser.lastLogin.getMonth() == nowDay.getMonth() && findUser.lastLogin.getDate() == nowDay.getDate())
+        return false;
+      return true;
+    }
+    else
+      throw new BadRequestException("User not found");
+  }
+
   async getAccountData(user, checkDevice, deviceToken, deviceOs, fcmToken) {
     const findUser = await this.usersService.findById(user.id);
     if (findUser) {
@@ -32,7 +45,8 @@ export class AccountService {
           const userData = await this.usersService.findById(user.id);
           if (userData) {
             const limitData = await this.recordsService.getTodayCount(user);
-            //      const [userData, limitData] = await Promise.all([userDataQuery, limitsQuery]);
+            //const [userData, limitData] = await Promise.all([userDataQuery, limitsQuery]);
+            await this.usersService.addScore(user, 1);
             return { ...userData, ...limitData };
           }
           else
@@ -44,7 +58,8 @@ export class AccountService {
         const userData = await this.usersService.findById(user.id);
         if (userData) {
           const limitsData = this.recordsService.getTodayCount(user);
-          //       const [userData, limitData] = await Promise.all([userDataQuery, limitsQuery]);
+          await this.usersService.addScore(user, 1);
+          //const [userData, limitData] = await Promise.all([userDataQuery, limitsQuery]);
           return { ...userData, ...limitsData };
         }
         else
@@ -61,7 +76,7 @@ export class AccountService {
     return true;
   }
 
-  async updateLastSee(user: UsersEntity){
+  async updateLastSee(user: UsersEntity) {
     const findUser = await this.usersService.findById(user.id);
     let now = new Date();
     let utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);

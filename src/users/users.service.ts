@@ -747,6 +747,10 @@ export class UsersService {
     await this.usersRepository.update(user.id, { score: () => `"score" + ${addValue}` });
   }
 
+  async updateLastLogin(user){
+    await this.usersRepository.update(user.id, { lastLogin: new Date()});
+  }
+
   async addHistory(userId, historyType, storyType = null, value = 0) {
     const history = new HistoryEntity();
     history.user = userId;

@@ -135,6 +135,9 @@ export class UsersEntity {
   @Column({ nullable: true })
   lastSee: Date;
 
+  @Column({ nullable: true })
+  lastLogin: Date;
+
   @CreateDateColumn({
     type: "timestamp without time zone",
     name: "createdAt"
