@@ -177,6 +177,7 @@ export class RecordsService {
         "user.avatarNumber",
         "user.phoneNumber",
         "user.isPrivate",
+        "user.score",
         "file.id",
         "file.url",
         "imgFile.id",
