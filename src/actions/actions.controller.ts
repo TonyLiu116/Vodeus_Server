@@ -539,13 +539,15 @@ export class ActionsController {
 
   @Post("inviteFriend")
   @ApiParam({ name: "phoneNumber", required: true, type: String })
+  @ApiParam({ name: "forSend", required: false, type: Boolean })
   async inviteFriend(
     @Req() req,
     @Res() res,
-    @Query("phoneNumber") phoneNumber: string
+    @Query("phoneNumber") phoneNumber: string,
+    @Query("forSend") forSend: boolean
   ) {
     const user = req.user;
-    return this.actionsService.inviteFriend(user, phoneNumber)
+    return this.actionsService.inviteFriend(user, phoneNumber, forSend)
       .then((data) => res.json(data))
       .catch(err => !err.status ? this.logger.error(err) : res.status(err.status).send(err.response));
   }
