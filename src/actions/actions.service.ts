@@ -1352,7 +1352,6 @@ export class ActionsService {
     if (user.phoneNumber == phoneNumber) {
       throw new BadRequestException("error");
     }
-    console.log(forSend,"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
     if (forSend) {
       const findUser = await this.usersRepository.findOne({ where: { id: user.id } });
       let content='';
