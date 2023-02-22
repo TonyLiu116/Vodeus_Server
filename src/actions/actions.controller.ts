@@ -455,6 +455,21 @@ export class ActionsController {
       .catch(err => !err.status ? this.logger.error(err) : res.status(err.status).send(err.response));
   }
 
+  @Get("createBirdRoom")
+  @ApiNotFoundResponse({ status: HttpStatus.NOT_FOUND, description: "" })
+  @ApiBadRequestResponse({ status: HttpStatus.BAD_REQUEST, description: "" })
+  @ApiQuery({ name: 'title', type: String, required: true })
+  async createBirdRoom(
+    @Req() req,
+    @Res() res,
+    @Query("title") title,
+  ) {
+    const user = req.user;
+    return this.actionsService.createBirdRoom(user, title)
+      .then((data) => res.json(data))
+      .catch(err => !err.status ? this.logger.error(err) : res.status(err.status).send(err.response));
+  }
+
   @Get("replyAnswerLike")
   @ApiNotFoundResponse({ status: HttpStatus.NOT_FOUND, description: "answer not found" })
   @ApiBadRequestResponse({ status: HttpStatus.BAD_REQUEST, description: "like not found" })

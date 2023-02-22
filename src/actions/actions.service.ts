@@ -1018,6 +1018,19 @@ export class ActionsService {
     return await this.likesRepository.update(existingLike.id, { isLike: false });
   }
 
+  async createBirdRoom(user, title) {
+    const findUsers = await this.findUsersByFriendId(user.Id);
+    if (findUsers.length == 0)
+      return;
+    const usersId = findUsers.map((user) => user.user.id);
+    const findUser = await this.usersRepository.findOne({ where: { id: user.id } });
+    let description = {
+      eg: `${findUser.name} has created a live room, join now ! 👀`,
+      fr: `${findUser.name} criou uma sala ao vivo, entre agora ! 👀`
+    }
+    await this.mailService.sentNotifyToUser(usersId, description, { nav: "Home", params: { isFeed: true } });
+  }
+
   async likeTag(user, tagId, isLike) {
     const tag = await this.tagsRepository.createQueryBuilder("tag")
       .leftJoin('tag.user', 'user')
@@ -1354,8 +1367,8 @@ export class ActionsService {
     }
     if (forSend) {
       const findUser = await this.usersRepository.findOne({ where: { id: user.id } });
-      let content='';
-      if(findUser.country == 'Brazil')
+      let content = '';
+      if (findUser.country == 'Brazil')
         content = "Conecte-se com Deus e outros cristãos do Brasil na aplicação Vodeus. É gratuito! www.vodeus.co";
       else
         content = "Connect with God and other Christians from Brazil on Vodeus app. It's free! www.vodeus.co";

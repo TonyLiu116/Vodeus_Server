@@ -34,14 +34,14 @@
         "database_login": "postgres",
         "database_password": "postgres"
     },
-    "database": {
+    "database1": {
         "database_address": "database-1.cfh7cxi6svqc.sa-east-1.rds.amazonaws.com",
         "database_port": 5432,
         "database_name": "postgres",
         "database_login": "postgres",
         "database_password": "postgres"
     },
-    "database2": {
+    "database": {
         "database_address": "database-test.cfh7cxi6svqc.sa-east-1.rds.amazonaws.com",
         "database_port": 5432,
         "database_name": "postgres",
