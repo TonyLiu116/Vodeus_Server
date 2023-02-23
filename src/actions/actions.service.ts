@@ -1018,7 +1018,7 @@ export class ActionsService {
     return await this.likesRepository.update(existingLike.id, { isLike: false });
   }
 
-  async createBirdRoom(user, title) {
+  async createBirdRoom(user, roomId) {
     const findUsers = await this.findUsersByFriendId(user.Id);
     if (findUsers.length == 0)
       return;
@@ -1028,7 +1028,7 @@ export class ActionsService {
       eg: `${findUser.name} has created a live room, join now ! 👀`,
       fr: `${findUser.name} criou uma sala ao vivo, entre agora ! 👀`
     }
-    await this.mailService.sentNotifyToUser(usersId, description, { nav: "Home", params: { isFeed: true } });
+    await this.mailService.sentNotifyToUser(usersId, description, { nav: "Home", params: { isFeed: true, roomId } });
   }
 
   async likeTag(user, tagId, isLike) {

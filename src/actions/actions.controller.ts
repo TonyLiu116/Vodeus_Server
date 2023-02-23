@@ -458,14 +458,14 @@ export class ActionsController {
   @Get("createBirdRoom")
   @ApiNotFoundResponse({ status: HttpStatus.NOT_FOUND, description: "" })
   @ApiBadRequestResponse({ status: HttpStatus.BAD_REQUEST, description: "" })
-  @ApiQuery({ name: 'title', type: String, required: true })
+  @ApiQuery({ name: 'roomId', type: String, required: true })
   async createBirdRoom(
     @Req() req,
     @Res() res,
-    @Query("title") title,
+    @Query("roomId") roomId,
   ) {
     const user = req.user;
-    return this.actionsService.createBirdRoom(user, title)
+    return this.actionsService.createBirdRoom(user, roomId)
       .then((data) => res.json(data))
       .catch(err => !err.status ? this.logger.error(err) : res.status(err.status).send(err.response));
   }
