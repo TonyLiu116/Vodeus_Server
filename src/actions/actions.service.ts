@@ -280,18 +280,6 @@ export class ActionsService {
       .getMany();
   }
 
-  findFriendsByUserId(userId) {
-    return this.friendsRepository
-      .createQueryBuilder("friends")
-      .where({ user: userId, status: FriendsStatusEnum.ACCEPTED })
-      .innerJoin("friends.friend", "friend")
-      .select([
-        "friends.id",
-        "friend.id",
-      ])
-      .getMany();
-  }
-
   async answerToRecord(user, record, duration, emoji, buffer, filename) {
     const findRecord = await this.recordsRepository.createQueryBuilder("record")
       .leftJoin('record.user', 'user')
@@ -1031,19 +1019,17 @@ export class ActionsService {
   }
 
   async createBirdRoom(user, roomId) {
-    console.log(user.Id,"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-    const findFriends = await this.findFriendsByUserId(user.Id);
-    console.log(findFriends.length,"@@@@@@@@@@@@@@@@@@");
-    if (findFriends.length == 0)
+    const findUsers = await this.findUsersByFriendId(user.id);
+    console.log(findUsers.length,"$$$$$$$$$$$$$$$$$$$$$$");
+    if (findUsers.length == 0)
       return;
-    const friendsId = findFriends.map((user) => user.friend.id);
+    const usersId = findUsers.map((user) => user.user.id);
     const findUser = await this.usersRepository.findOne({ where: { id: user.id } });
     let description = {
       eg: `${findUser.name} has created a live room, join now ! 👀`,
       fr: `${findUser.name} criou uma sala ao vivo, entre agora ! 👀`
     }
-    console.log(friendsId,"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-    await this.mailService.sentNotifyToUser(friendsId, description, { nav: "Home", params: { isFeed: true, roomId } });
+    await this.mailService.sentNotifyToUser(usersId, description, { nav: "Home", params: { isFeed: true, roomId } });
   }
 
   async likeTag(user, tagId, isLike) {
