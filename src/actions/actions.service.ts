@@ -1031,6 +1031,7 @@ export class ActionsService {
   }
 
   async createBirdRoom(user, roomId) {
+    console.log(user.Id,"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
     const findFriends = await this.findFriendsByUserId(user.Id);
     console.log(findFriends.length,"@@@@@@@@@@@@@@@@@@");
     if (findFriends.length == 0)
