@@ -465,6 +465,7 @@ export class ActionsController {
     @Query("roomId") roomId,
   ) {
     const user = req.user;
+    console.log("createBirdRoom: ",roomId,"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     return this.actionsService.createBirdRoom(user, roomId)
       .then((data) => res.json(data))
       .catch(err => !err.status ? this.logger.error(err) : res.status(err.status).send(err.response));
