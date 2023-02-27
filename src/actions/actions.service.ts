@@ -1028,6 +1028,7 @@ export class ActionsService {
       eg: `${findUser.name} has created a live room, join now ! 👀`,
       fr: `${findUser.name} criou uma sala ao vivo, entre agora ! 👀`
     }
+    console.log(usersId,"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     await this.mailService.sentNotifyToUser(usersId, description, { nav: "Home", params: { isFeed: true, roomId } });
   }
 
