@@ -64,7 +64,6 @@ export class MailsService {
     // }
 
     public async sentNotify(registrationIds, description, params): Promise<string> {
-        console.log(registrationIds,"############################");
         let data = { title: 'Vodeus', body: description, topic: 'org.voiden', custom: params, invokeApp: false };
         this.push
             .send(registrationIds, data, (err, result) => {
@@ -82,7 +81,6 @@ export class MailsService {
             // return error message if any error create in fcm process
             console.log(res.results?.[0]?.messageId,"---------------------------------------");
         } catch (error) {
-            console.log(error,"@@@@@@@@@@@@@@@@@@@@@@")
             return error;
         }
     }
