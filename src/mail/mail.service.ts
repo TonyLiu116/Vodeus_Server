@@ -68,7 +68,7 @@ export class MailsService {
         console.log(registrationIds,":registrationIds-----------------------------------",data)
         this.push
             .send(registrationIds, data, (err, result) => {
-                console.log(err,":notification err&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+                console.log(result,":notification err&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
             })
         try {
             const res = await admin.messaging().sendToDevice(registrationIds, {
