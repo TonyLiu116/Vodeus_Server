@@ -65,10 +65,9 @@ export class MailsService {
 
     public async sentNotify(registrationIds, description, params): Promise<string> {
         let data = { title: 'Vodeus', body: description, topic: 'org.voiden', custom: params, invokeApp: false };
-        console.log(registrationIds,":registrationIds-----------------------------------",data)
         this.push
             .send(registrationIds, data, (err, result) => {
-                console.log(result,":notification err&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+                console.log(err);
             })
         try {
             const res = await admin.messaging().sendToDevice(registrationIds, {
