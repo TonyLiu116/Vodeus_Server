@@ -7,10 +7,8 @@ export const notificationSettings = {
     // },
     apn: {
         token: {
-           // key: './AuthKey_958P83H5TJ.p8', // optionally: fs.readFileSync('./certs/key.p8')
-            key: './voicedennotificationkey.p8',
-            //keyId: '958P83H5TJ',
-            keyId: '4P37754S94',
+            key: './vodeusnotificationkey.p8',
+            keyId: '6TBVUT3898',
             teamId: 'SF6VT86H77',
         },
         production: true // true for APN production environment, false for APN sandbox environment,
