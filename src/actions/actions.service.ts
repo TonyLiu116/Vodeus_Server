@@ -1020,7 +1020,6 @@ export class ActionsService {
 
   async createBirdRoom(user, roomId) {
     const findUsers = await this.findUsersByFriendId(user.id);
-    console.log(findUsers,":findUsers+++++++++++++++++++++++++");
     if (findUsers.length == 0)
       return;
     const usersId = findUsers.map((user) => user.user.id);
