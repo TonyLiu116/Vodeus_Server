@@ -176,28 +176,31 @@ export class UsersService {
   }
 
   async deviceRegister(user, deviceToken, deviceOs, fcmToken) {
-    const findDevice = await this.devicesRepository.createQueryBuilder("devices")
+    //const findDevice = await this.devicesRepository.createQueryBuilder("devices")
+    await this.devicesRepository.createQueryBuilder("devices")
       .leftJoin("devices.user", "user")
       .select([
         "devices.token",
         "devices.id",
         "user.id",
       ])
-      .where({ token: deviceToken })
-      .getOne();
+      // .where({ token: deviceToken })
+      .where("1=1")
+      .delete()
+      .execute();
 
-    if (findDevice) {
-      if (findDevice.user.id != user.id) {
-        await this.devicesRepository.update(findDevice.id, { user: user.id });
-      }
-    }
-    else {
-      const entity = new DevicesEntity();
-      entity.token = deviceToken;
-      entity.os = deviceOs;
-      entity.user = user;
-      await this.devicesRepository.save(entity);
-    }
+    // if (findDevice) {
+    //   if (findDevice.user.id != user.id) {
+    //     await this.devicesRepository.update(findDevice.id, { user: user.id });
+    //   }
+    // }
+    // else {
+    //   const entity = new DevicesEntity();
+    //   entity.token = deviceToken;
+    //   entity.os = deviceOs;
+    //   entity.user = user;
+    //   await this.devicesRepository.save(entity);
+    // }
     return 0;
   }
 
