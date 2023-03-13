@@ -176,31 +176,41 @@ export class UsersService {
   }
 
   async deviceRegister(user, deviceToken, deviceOs, fcmToken) {
-    //const findDevice = await this.devicesRepository.createQueryBuilder("devices")
-    await this.devicesRepository.createQueryBuilder("devices")
+    const findDevice = await this.devicesRepository.createQueryBuilder("devices")
       .leftJoin("devices.user", "user")
       .select([
         "devices.token",
         "devices.id",
         "user.id",
       ])
-      // .where({ token: deviceToken })
-      .where("1=1")
-      .delete()
-      .execute();
+      .where({ token: deviceToken })
+      .getOne();
 
-    // if (findDevice) {
-    //   if (findDevice.user.id != user.id) {
-    //     await this.devicesRepository.update(findDevice.id, { user: user.id });
-    //   }
-    // }
-    // else {
-    //   const entity = new DevicesEntity();
-    //   entity.token = deviceToken;
-    //   entity.os = deviceOs;
-    //   entity.user = user;
-    //   await this.devicesRepository.save(entity);
-    // }
+    if (findDevice) {
+      if (findDevice.user.id != user.id)
+        await this.devicesRepository.update(findDevice.id, { user: user.id });
+    }
+    else {
+      const findUser = await this.devicesRepository.createQueryBuilder("devices")
+        .leftJoin("devices.user", "user")
+        .select([
+          "devices.token",
+          "devices.id",
+          "user.id",
+        ])
+        .where({ user: user.id })
+        .getOne();
+      if (findUser) {
+        await this.devicesRepository.update(findDevice.id, { token: deviceToken });
+      }
+      else {
+        const entity = new DevicesEntity();
+        entity.token = deviceToken;
+        entity.os = deviceOs;
+        entity.user = user;
+        await this.devicesRepository.save(entity);
+      }
+    }
     return 0;
   }
 
@@ -750,8 +760,8 @@ export class UsersService {
     await this.usersRepository.update(user.id, { score: () => `"score" + ${addValue}` });
   }
 
-  async updateLastLogin(user){
-    await this.usersRepository.update(user.id, { lastLogin: new Date()});
+  async updateLastLogin(user) {
+    await this.usersRepository.update(user.id, { lastLogin: new Date() });
   }
 
   async addHistory(userId, historyType, storyType = null, value = 0) {
