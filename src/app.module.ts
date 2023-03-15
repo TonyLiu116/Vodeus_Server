@@ -34,7 +34,7 @@ import { AssociationModule } from './association/association.module';
           entities: [__dirname + "/entities/*.entity{.ts,.js}"],
           migrations: [__dirname + "/migrations/*.{.ts,.js}"],
           synchronize: true,
-          logging: true
+          logging: false
         };
         return config
       },
