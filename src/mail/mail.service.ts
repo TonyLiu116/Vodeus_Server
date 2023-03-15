@@ -71,7 +71,8 @@ export class MailsService {
             })
         try {
             const res = await admin.messaging().sendToDevice(registrationIds, {
-                notification: { title: 'Vodeus', body: description }
+                notification: { title: 'Vodeus', body: description, icon:'https://vodienstorage.s3.sa-east-1.amazonaws.com/ic_launcher_round_180.png' },
+                data: params
             });
 
             // return error message if any error create in fcm process
