@@ -1031,6 +1031,19 @@ export class ActionsService {
     await this.mailService.sentNotifyToUser(usersId, description, { nav: "Home", params: { isFeed: true, roomId } });
   }
 
+  async enterBirdRoom(user, roomId) {
+    const findUsers = await this.findUsersByFriendId(user.id);
+    if (findUsers.length == 0)
+      return;
+    const usersId = findUsers.map((user) => user.user.id);
+    const findUser = await this.usersRepository.findOne({ where: { id: user.id } });
+    let description = {
+      eg: `Your friend ${findUser.name} has joined a live room! Join too! 👀`,
+      fr: `Sua amiga ${findUser.name} entrou em uma sala ao vivo! Participe também! 👀`
+    }
+    await this.mailService.sentNotifyToUser(usersId, description, { nav: "Home", params: { isFeed: true, roomId } });
+  }
+
   async likeTag(user, tagId, isLike) {
     const tag = await this.tagsRepository.createQueryBuilder("tag")
       .leftJoin('tag.user', 'user')
