@@ -213,6 +213,7 @@ export class ActionsService {
   }
 
   async addRecord(body: RecordDto, user, voiceFile, imageFile, isPast) {
+    console.log("addRecordFuntion");
     const uploadVoiceFile = await this.filesService.uploadFile(voiceFile[0].buffer, voiceFile[0].originalname, FileTypeEnum.AUDIO);
     const uploadImageFile = await this.filesService.uploadFile(imageFile[0].buffer, imageFile[0].originalname, FileTypeEnum.IMAGE);
     const rand = Math.floor(Math.random() * (3));
@@ -230,11 +231,11 @@ export class ActionsService {
     entity.category = body.category;
     if (body.address)
       entity.address = body.address;
-    if (body.createdAt != '') {
-      let tempCreatedAt = new Date(body.createdAt);
-      tempCreatedAt.setHours(23);
-      entity.createdAt = tempCreatedAt;
-    }
+    // if (body.createdAt != '') {
+    //   let tempCreatedAt = new Date(body.createdAt);
+    //   tempCreatedAt.setHours(23);
+    //   entity.createdAt = tempCreatedAt;
+    // }
     // const followers = await this.friendsRepository
     //   .createQueryBuilder('friends')
     //   .leftJoin("friends.friend","friend")
@@ -248,6 +249,7 @@ export class ActionsService {
     const friendUsers = friends.map((el, index) => el.user.id);
     const receivers = await this.usersRepository.find({ where: { id: In(friendUsers) } });
     const res = await this.recordsRepository.save(entity);
+    console.log("SaveStory");
     if (isPast) {
       receivers.forEach(async el => {
         await this.notificationService.sendNotification(user, el, res, null, null, NotificationTypeEnum.POST_OLD_STORY);
@@ -263,6 +265,7 @@ export class ActionsService {
     } else {
       await this.mailService.sentNotifyToFriends(user.id, res.id, res.createdAt);
     }
+    console.log("return res:::")
     return res;
   }
 
