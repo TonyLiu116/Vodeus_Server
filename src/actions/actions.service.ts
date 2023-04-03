@@ -214,15 +214,15 @@ export class ActionsService {
 
   async addRecord(body: RecordDto, user, voiceFile, imageFile, isPast) {
     console.log("addRecordFuntion");
-    const uploadVoiceFile = await this.filesService.uploadFile(voiceFile[0].buffer, voiceFile[0].originalname, FileTypeEnum.AUDIO);
-    const uploadImageFile = await this.filesService.uploadFile(imageFile[0].buffer, imageFile[0].originalname, FileTypeEnum.IMAGE);
+    const uploadVoiceFile = voiceFile ? await this.filesService.uploadFile(voiceFile[0].buffer, voiceFile[0].originalname, FileTypeEnum.AUDIO) : null;
+    const uploadImageFile = imageFile ? await this.filesService.uploadFile(imageFile[0].buffer, imageFile[0].originalname, FileTypeEnum.IMAGE) : null;
     const rand = Math.floor(Math.random() * (3));
     const entity = new RecordsEntity();
+    if (uploadVoiceFile) entity.file = uploadVoiceFile;
+    if (uploadImageFile) entity.imgFile = uploadImageFile;
     entity.title = body.title;
     entity.emoji = body.emoji;
     entity.duration = body.duration;
-    entity.file = uploadVoiceFile;
-    entity.imgFile = uploadImageFile;
     entity.user = user;
     entity.colorType = rand;
     entity.privacy = body.privacy;

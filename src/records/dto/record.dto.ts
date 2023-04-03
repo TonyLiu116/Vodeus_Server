@@ -30,10 +30,10 @@ export class RecordDto {
   @ApiModelProperty({ example: false })
   temporary: boolean;
 
-  @ApiModelProperty({ type: 'string', format: 'binary', required: true })
+  @ApiModelProperty({ type: 'string', format: 'binary' })
   audioFile: any;
 
-  @ApiModelProperty({ type: 'string', format: 'binary', required: true })
+  @ApiModelProperty({ type: 'string', format: 'binary' })
   imageFile: any;
 
   @ApiProperty({ example: "9daaf749-6202-4b6f-86fc-133ce7ed8c23" })
