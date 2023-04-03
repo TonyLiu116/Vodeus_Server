@@ -37,7 +37,7 @@ export class RecordsEntity {
   @Column({ nullable: true })
   text: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: true })
   category: string;
 
   @Column({ nullable: true, default: 0 })
