@@ -213,7 +213,6 @@ export class ActionsService {
   }
 
   async addRecord(body: RecordDto, user, voiceFile, imageFile, isPast) {
-    console.log("addRecordFuntion");
     const uploadVoiceFile = voiceFile ? await this.filesService.uploadFile(voiceFile[0].buffer, voiceFile[0].originalname, FileTypeEnum.AUDIO) : null;
     const uploadImageFile = imageFile ? await this.filesService.uploadFile(imageFile[0].buffer, imageFile[0].originalname, FileTypeEnum.IMAGE) : null;
     const rand = Math.floor(Math.random() * (3));
@@ -249,7 +248,6 @@ export class ActionsService {
     const friendUsers = friends.map((el, index) => el.user.id);
     const receivers = await this.usersRepository.find({ where: { id: In(friendUsers) } });
     const res = await this.recordsRepository.save(entity);
-    console.log("SaveStory");
     if (isPast) {
       receivers.forEach(async el => {
         await this.notificationService.sendNotification(user, el, res, null, null, NotificationTypeEnum.POST_OLD_STORY);
