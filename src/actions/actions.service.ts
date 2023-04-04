@@ -220,6 +220,7 @@ export class ActionsService {
     if (uploadVoiceFile) entity.file = uploadVoiceFile;
     if (uploadImageFile) entity.imgFile = uploadImageFile;
     entity.title = body.title;
+    entity.text = body.content;
     entity.emoji = body.emoji;
     entity.duration = body.duration;
     entity.user = user;

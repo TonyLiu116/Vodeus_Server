@@ -6,6 +6,9 @@ export class RecordDto {
   @ApiModelProperty({ type: 'string', })
   title: string;
 
+  @ApiModelProperty({ type: 'string', })
+  content: string;
+
   @ApiModelProperty({ type: 'string', example: '😎'})
   emoji: string;
 
