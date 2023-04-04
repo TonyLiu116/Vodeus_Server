@@ -1232,7 +1232,7 @@ export class ActionsService {
       await this.friendsRepository.save(entity);
     }
     await this.notificationService.sendNotification(user, findFriend, null, null, null, NotificationTypeEnum.FRIEND_ACCEPT);
-    await this.notificationService.deleteNotification(user, requestId);
+    //await this.notificationService.deleteNotification(user, requestId);
     let usersId = [];
     usersId.push(findFriend.id);
     let description = {
