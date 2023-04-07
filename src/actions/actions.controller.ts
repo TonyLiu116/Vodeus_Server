@@ -359,6 +359,24 @@ export class ActionsController {
       .catch(err => !err.status ? this.logger.error(err) : res.status(err.status).send(err.response));
   }
 
+  @Post("addChatMessage")
+  @ApiConsumes("multipart/form-data")
+  @ApiCreatedResponse({ status: HttpStatus.CREATED, description: "The message has been created" })
+  @ApiNotFoundResponse({ status: HttpStatus.NOT_FOUND, description: "user not found" })
+  @ApiBadRequestResponse({ status: HttpStatus.BAD_REQUEST, description: "Unknown err" })
+  @UseInterceptors(FileInterceptor("file"))
+  async addChatMessage(
+    @Req() req,
+    @Res() res,
+    @UploadedFile() file,
+    @Body() body: FileDto
+  ) {
+    const user = req.user;
+    return this.actionsService.addChatMessage(body, file)
+      .then((data) => res.json(data))
+      .catch(err => !err.status ? this.logger.error(err) : res.status(err.status).send(err.response));
+  }
+
   @Post("answerappreciate")
   @ApiNotFoundResponse({ status: HttpStatus.NOT_FOUND, description: "answer not found" })
   @ApiBadRequestResponse({ status: HttpStatus.BAD_REQUEST, description: "like exist" })

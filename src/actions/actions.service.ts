@@ -744,6 +744,14 @@ export class ActionsService {
     return this.MessagesRepository.save(entity);
   }
 
+  async addChatMessage(body, file) {
+    console.log(body, file,":body,file");
+    let type = body.type
+    const uploadFile = file ? await this.filesService.uploadFile(file.buffer, file.originalname, type == 'voice' ? FileTypeEnum.AUDIO : FileTypeEnum.IMAGE) : null;
+    console.log(uploadFile,"uploadFile");
+    return uploadFile;
+  }
+
   async likeRecord(user, recordId) {
     const record = await this.recordsRepository.createQueryBuilder("record")
       .leftJoin('record.user', 'user')
