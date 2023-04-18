@@ -64,14 +64,14 @@ export class MailsService {
     // }
 
     public async sentNotify(registrationIds, description, params): Promise<string> {
-        let data = { title: 'Vodeus', body: description, topic: 'org.voiden', custom: params, invokeApp: false };
+        let data = { title: 'Hilal', body: description, topic: 'org.hilal', custom: params, invokeApp: false };
         this.push
             .send(registrationIds, data, (err, result) => {
                 console.log(result,":result+++++++++++++++++++++++++");
             })
         try {
             const res = await admin.messaging().sendToDevice(registrationIds, {
-                notification: { title: 'Vodeus', body: description, icon:'https://vodienstorage.s3.sa-east-1.amazonaws.com/ic_launcher_round_180.png' },
+                notification: { title: 'Hilal', body: description, icon:'https://vodienstorage.s3.sa-east-1.amazonaws.com/ic_launcher+(5).png' },
                 data: params
             });
 

@@ -7,8 +7,8 @@ export const notificationSettings = {
     // },
     apn: {
         token: {
-            key: './vodeusnotificationkey.p8',
-            keyId: '6TBVUT3898',
+            key: './hilalnotificationkey.p8',
+            keyId: 'V85BXTW2A3',
             teamId: 'SF6VT86H77',
         },
         production: true // true for APN production environment, false for APN sandbox environment,
