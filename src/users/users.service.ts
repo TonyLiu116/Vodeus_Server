@@ -139,11 +139,6 @@ export class UsersService {
   }
 
   async deleteUser(user) {
-    this.usersRepository
-      .createQueryBuilder('user')
-      .where("1=1")
-      .delete()
-      .execute();
     return await this.usersRepository.remove(user);
   }
 
