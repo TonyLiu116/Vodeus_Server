@@ -10,6 +10,7 @@ import {
   import { LoginResponse } from '../auth/dto/login.response';
   import { ApiResponse, ApiTags } from "@nestjs/swagger";
   import { AuthService } from 'src/auth/auth.service';
+import FacebookTokenVerificationDto from './dto/facebookTokenVerification.dto';
 
   @Controller()
 //   @ApiTags("googleauth")
@@ -43,8 +44,20 @@ import {
         @Res() res,
         @Body() tokenData: AppleTokenVerificationDto
     ): Promise<LoginResponse> {
-      console.log(tokenData,"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
         const {user, isRegister} =  await this.authenticationService.appleAuthenticate(tokenData)
+        return await this.authService.login( "", user, isRegister)
+        .then((data) => res.json(data))
+        .catch(err => !err.status ? this.logger.error(err) : res.status(err.status).send(err.response));
+    }
+
+    @Post("facebookauth")
+    @ApiResponse({ status: HttpStatus.CREATED, description: "User data with jwt token", type: LoginResponse })
+    @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: "Unauthorized" })
+    async facebookAuthenticate(
+        @Res() res,
+        @Body() tokenData: FacebookTokenVerificationDto
+    ): Promise<LoginResponse> {
+        const {user, isRegister} =  await this.authenticationService.facebookAuthenticate(tokenData)
         return await this.authService.login( "", user, isRegister)
         .then((data) => res.json(data))
         .catch(err => !err.status ? this.logger.error(err) : res.status(err.status).send(err.response));
