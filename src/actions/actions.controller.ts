@@ -488,6 +488,21 @@ export class ActionsController {
       .catch(err => !err.status ? this.logger.error(err) : res.status(err.status).send(err.response));
   }
 
+  @Get("createChatRoom")
+  @ApiNotFoundResponse({ status: HttpStatus.NOT_FOUND, description: "" })
+  @ApiBadRequestResponse({ status: HttpStatus.BAD_REQUEST, description: "" })
+  @ApiQuery({ name: 'roomId', type: String, required: true })
+  async createChatRoom(
+    @Req() req,
+    @Res() res,
+    @Query("roomId") roomId,
+  ) {
+    const user = req.user;
+    return this.actionsService.createChatRoom(user, roomId)
+      .then((data) => res.json(data))
+      .catch(err => !err.status ? this.logger.error(err) : res.status(err.status).send(err.response));
+  }
+
   @Get("enterBirdRoom")
   @ApiNotFoundResponse({ status: HttpStatus.NOT_FOUND, description: "" })
   @ApiBadRequestResponse({ status: HttpStatus.BAD_REQUEST, description: "" })

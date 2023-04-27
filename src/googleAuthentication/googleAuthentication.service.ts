@@ -7,6 +7,7 @@ import { UsersEntity } from '../entities/users.entity';
 import { AuthService } from '../auth/auth.service'
 import AppleTokenVerificationDto from './dto/appleTokenVerification.dto';
 import * as jwt from 'jsonwebtoken';
+import FacebookTokenVerificationDto from './dto/facebookTokenVerification.dto';
 
 @Injectable()
 export class GoogleAuthenticationService {
@@ -105,6 +106,23 @@ export class GoogleAuthenticationService {
     else {
       return {
         user: await this.registerUser(info.identityToken, sub),
+        isRegister: true
+      }
+    }
+  }
+
+  async facebookAuthenticate(info: FacebookTokenVerificationDto) {
+    const sub = info.facebookId+'';
+    const user = await this.usersService.findOneByEmail(sub);
+    if (user) {
+      return {
+        user,
+        isRegister: false
+      }
+    }
+    else {
+      return {
+        user: await this.registerUser('', sub),
         isRegister: true
       }
     }
