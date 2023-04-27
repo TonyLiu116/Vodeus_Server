@@ -10,6 +10,7 @@ import {
   import { LoginResponse } from '../auth/dto/login.response';
   import { ApiResponse, ApiTags } from "@nestjs/swagger";
   import { AuthService } from 'src/auth/auth.service';
+import FacebookTokenVerificationDto from './dto/facebookTokenVerification.dto';
 
   @Controller()
 //   @ApiTags("googleauth")
