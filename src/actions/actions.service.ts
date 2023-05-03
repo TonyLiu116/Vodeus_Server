@@ -1038,7 +1038,7 @@ export class ActionsService {
       eg: `${findUser.name} has created a live room, join now ! 👀`,
       fr: `${findUser.name} criou uma sala ao vivo, entre agora ! 👀`
     }
-    await this.mailService.sentNotifyToUser(usersId, description, { nav: "Home", params: { isFeed: true, roomId } });
+    await this.mailService.sentNotifyToUsers(description, { nav: "Home", params: { isFeed: true, roomId } });
   }
 
   async createChatRoom(user, roomId) {
@@ -1051,7 +1051,7 @@ export class ActionsService {
       eg: `${findUser.name} has created a chat room, join now ! 👀`,
       fr: `${findUser.name} criou uma sala ao vivo, entre agora ! 👀`
     }
-    await this.mailService.sentNotifyToUser(usersId, description, { nav: "Home", params: { isChat: true, chatRoomId: roomId } });
+    await this.mailService.sentNotifyToUsers(description, { nav: "Home", params: { isChat: true, chatRoomId: roomId } });
   }
 
   async enterBirdRoom(user, roomId) {
