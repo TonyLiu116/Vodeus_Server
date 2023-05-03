@@ -745,10 +745,10 @@ export class ActionsService {
   }
 
   async addChatMessage(body, file) {
-    console.log(body, file,":body,file");
+    console.log(body, file, ":body,file");
     let type = body.type
     const uploadFile = file ? await this.filesService.uploadFile(file.buffer, file.originalname, type == 'voice' ? FileTypeEnum.AUDIO : FileTypeEnum.IMAGE) : null;
-    console.log(uploadFile,"uploadFile");
+    console.log(uploadFile, "uploadFile");
     return uploadFile;
   }
 
@@ -1038,7 +1038,7 @@ export class ActionsService {
       eg: `${findUser.name} has created a live room, join now ! 👀`,
       fr: `${findUser.name} criou uma sala ao vivo, entre agora ! 👀`
     }
-    await this.mailService.sentNotifyToUsers(description,{ nav: "Home", params: { isFeed: true, roomId } });
+    await this.mailService.sentNotifyToUsers(description, { nav: "Home", params: { isFeed: true, roomId } });
   }
 
   async createChatRoom(user, roomId) {
@@ -1051,7 +1051,7 @@ export class ActionsService {
       eg: `${findUser.name} has created a chat room, join now ! 👀`,
       fr: `${findUser.name} criou uma sala ao vivo, entre agora ! 👀`
     }
-    await this.mailService.sentNotifyToUsers(description,{ nav: "Home", params: { isChat: true, chatRoomId: roomId } });
+    await this.mailService.sentNotifyToUsers(description, { nav: "Home", params: { isChat: true, chatRoomId: roomId } });
   }
 
   async enterBirdRoom(user, roomId) {

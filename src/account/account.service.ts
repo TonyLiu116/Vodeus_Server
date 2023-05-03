@@ -40,31 +40,18 @@ export class AccountService {
     const findUser = await this.usersService.findById(user.id);
     if (findUser) {
       this.usersService.addOpenApp(user);
-      if (checkDevice == 'reg') {
-        return await this.usersService.deviceRegister(user, deviceToken, deviceOs, fcmToken).then(async res => {
-          const userData = await this.usersService.findById(user.id);
-          if (userData) {
-            const limitData = await this.recordsService.getTodayCount(user);
-            //const [userData, limitData] = await Promise.all([userDataQuery, limitsQuery]);
-            await this.usersService.addScore(user, 1);
-            return { ...userData, ...limitData };
-          }
-          else
-            return null;
-        }
-        )
-      }
-      else {
+      return await this.usersService.deviceRegister(user, deviceToken, deviceOs, fcmToken).then(async res => {
         const userData = await this.usersService.findById(user.id);
         if (userData) {
-          const limitsData = this.recordsService.getTodayCount(user);
-          await this.usersService.addScore(user, 1);
+          const limitData = await this.recordsService.getTodayCount(user);
           //const [userData, limitData] = await Promise.all([userDataQuery, limitsQuery]);
-          return { ...userData, ...limitsData };
+          await this.usersService.addScore(user, 1);
+          return { ...userData, ...limitData };
         }
         else
           return null;
       }
+      )
     }
     else
       throw new BadRequestException("User not found");
