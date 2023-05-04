@@ -67,24 +67,22 @@ export class MailsService {
         let data = { title: 'Hilal', body: description, topic: 'org.hilal', custom: params, invokeApp: false };
         this.push
             .send(registrationIds, data, (err, result) => {
-                console.log(result,":result+++++++++++++++++++++++++");
+                //console.log(result,":result+++++++++++++++++++++++++");
             })
         try {
             let paramsJson = {nav:params.nav, ...params.params};
-            console.log(paramsJson,":paramsJson");
             const res = await admin.messaging().sendToDevice(registrationIds, {
                 notification: { title: 'Hilal', body: description, icon:'https://vodienstorage.s3.sa-east-1.amazonaws.com/ic_launcher+(5).png' },
                 data: paramsJson
             });
             // return error message if any error create in fcm process
             if (res?.failureCount) {
-                console.log(registrationIds.length, "*******", res?.failureCount);
-                console.log(res.results?.[0]?.error?.message,"__________________________________");
+           //     console.log(res.results?.[0]?.error?.message,"__________________________________");
             }
             // return error message if any error create in fcm process
-            console.log(res.results?.[0]?.messageId,"---------------------------------------");
+        //    console.log(res.results?.[0]?.messageId,"---------------------------------------");
         } catch (error) {
-            console.log(error,"final_error")
+     //       console.log(error,"final_error")
             return error;
         }
     }
