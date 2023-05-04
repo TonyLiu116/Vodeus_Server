@@ -186,17 +186,12 @@ export class UsersService {
       .where({ token: deviceToken })
       .getOne();
 
-    console.log("2");
-
     if (findDevice) {
-      console.log("3");
       if (findDevice.user.id != user.id){
         await this.devicesRepository.update(findDevice.id, { user: user.id });
-        console.log("4");
       }
     }
     else {
-      console.log("5");
       const findUser = await this.devicesRepository.createQueryBuilder("devices")
         .leftJoin("devices.user", "user")
         .select([

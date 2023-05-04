@@ -37,11 +37,9 @@ export class AccountService {
   }
 
   async getAccountData(user, checkDevice, deviceToken, deviceOs, fcmToken) {
-    console.log("0");
     const findUser = await this.usersService.findById(user.id);
     if (findUser) {
       this.usersService.addOpenApp(user);
-      console.log("1");
       return await this.usersService.deviceRegister(user, deviceToken, deviceOs, fcmToken).then(async res => {
         const userData = await this.usersService.findById(user.id);
         if (userData) {
