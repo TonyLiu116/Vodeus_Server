@@ -498,6 +498,7 @@ export class ActionsController {
     @Query("roomId") roomId,
   ) {
     const user = req.user;
+    console.log("0");
     return this.actionsService.createChatRoom(user, roomId)
       .then((data) => res.json(data))
       .catch(err => !err.status ? this.logger.error(err) : res.status(err.status).send(err.response));
