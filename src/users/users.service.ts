@@ -206,7 +206,7 @@ export class UsersService {
       else {
         const entity = new DevicesEntity();
         entity.token = deviceToken;
-        entity.os = deviceOs;
+       // entity.os = deviceOs;
         entity.user = user;
         await this.devicesRepository.save(entity);
       }
