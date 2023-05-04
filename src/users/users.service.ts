@@ -201,12 +201,11 @@ export class UsersService {
         .where({ user: user.id })
         .getOne();
       if (findUser) {
-        await this.devicesRepository.update(findDevice.id, { token: deviceToken });
+        await this.devicesRepository.update(findUser.id, { token: deviceToken });
       }
       else {
         const entity = new DevicesEntity();
         entity.token = deviceToken;
-        entity.os = deviceOs;
         entity.user = user;
         await this.devicesRepository.save(entity);
       }
