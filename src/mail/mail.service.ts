@@ -78,6 +78,7 @@ export class MailsService {
             });
             // return error message if any error create in fcm process
             if (res?.failureCount) {
+                console.log(registrationIds.length, "*******", res?.failureCount);
                 console.log(res.results?.[0]?.error?.message,"__________________________________");
             }
             // return error message if any error create in fcm process
