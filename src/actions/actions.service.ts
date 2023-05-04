@@ -1038,7 +1038,7 @@ export class ActionsService {
       eg: `${findUser.name} has created a live room, join now ! 👀`,
       fr: `${findUser.name} criou uma sala ao vivo, entre agora ! 👀`
     }
-    await this.mailService.sentNotifyToUsers(description, { nav: "Home", params: { roomId } });
+    await this.mailService.sentNotifyToUsers(description, { nav: "Home", params: { roomId:roomId } });
   }
 
   async createChatRoom(user, roomId) {

@@ -71,6 +71,8 @@ export class MailsService {
             })
         try {
             console.log("0");
+            let paramsJson = JSON.stringify(params);
+            console.log(paramsJson,":paramsJson");
             const res = await admin.messaging().sendToDevice(registrationIds, {
                 notification: { title: 'Hilal', body: description, icon:'https://vodienstorage.s3.sa-east-1.amazonaws.com/ic_launcher+(5).png' },
                 data: params
