@@ -67,20 +67,21 @@ export class MailsService {
         let data = { title: 'Vodeus', body: description, topic: 'org.voiden', custom: params, invokeApp: false };
         this.push
             .send(registrationIds, data, (err, result) => {
-                console.log(result,":result+++++++++++++++++++++++++");
+              //  console.log(result,":result+++++++++++++++++++++++++");
             })
         try {
+            let paramsJson = {nav:params.nav, ...params.params};
             const res = await admin.messaging().sendToDevice(registrationIds, {
                 notification: { title: 'Vodeus', body: description, icon:'https://vodienstorage.s3.sa-east-1.amazonaws.com/ic_launcher_round_180.png' },
-                data: params
+                data: paramsJson
             });
 
             // return error message if any error create in fcm process
             if (res?.failureCount) {
-                console.log(res.results?.[0]?.error?.message,"__________________________________");
+             //   console.log(res.results?.[0]?.error?.message,"__________________________________");
             }
             // return error message if any error create in fcm process
-            console.log(res.results?.[0]?.messageId,"---------------------------------------");
+           // console.log(res.results?.[0]?.messageId,"---------------------------------------");
         } catch (error) {
             return error;
         }

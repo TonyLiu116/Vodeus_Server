@@ -1029,10 +1029,10 @@ export class ActionsService {
   }
 
   async createBirdRoom(user, roomId) {
-    const findUsers = await this.findUsersByFriendId(user.id);
-    if (findUsers.length == 0)
-      return;
-    const usersId = findUsers.map((user) => user.user.id);
+    // const findUsers = await this.findUsersByFriendId(user.id);
+    // if (findUsers.length == 0)
+    //   return;
+    // const usersId = findUsers.map((user) => user.user.id);
     const findUser = await this.usersRepository.findOne({ where: { id: user.id } });
     let description = {
       eg: `${findUser.name} has created a live room, join now ! 👀`,
@@ -1042,10 +1042,10 @@ export class ActionsService {
   }
 
   async createChatRoom(user, roomId) {
-    const findUsers = await this.findUsersByFriendId(user.id);
-    if (findUsers.length == 0)
-      return;
-    const usersId = findUsers.map((user) => user.user.id);
+    // const findUsers = await this.findUsersByFriendId(user.id);
+    // if (findUsers.length == 0)
+    //   return;
+    // const usersId = findUsers.map((user) => user.user.id);
     const findUser = await this.usersRepository.findOne({ where: { id: user.id } });
     let description = {
       eg: `${findUser.name} has created a chat room, join now ! 👀`,
