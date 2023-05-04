@@ -186,11 +186,17 @@ export class UsersService {
       .where({ token: deviceToken })
       .getOne();
 
+    console.log("2");
+
     if (findDevice) {
-      if (findDevice.user.id != user.id)
+      console.log("3");
+      if (findDevice.user.id != user.id){
         await this.devicesRepository.update(findDevice.id, { user: user.id });
+        console.log("4");
+      }
     }
     else {
+      console.log("5");
       const findUser = await this.devicesRepository.createQueryBuilder("devices")
         .leftJoin("devices.user", "user")
         .select([
@@ -200,8 +206,10 @@ export class UsersService {
         ])
         .where({ user: user.id })
         .getOne();
+      console.log("6");
       if (findUser) {
         await this.devicesRepository.update(findDevice.id, { token: deviceToken });
+        console.log("7");
       }
       else {
         const entity = new DevicesEntity();
@@ -209,6 +217,7 @@ export class UsersService {
        // entity.os = deviceOs;
         entity.user = user;
         await this.devicesRepository.save(entity);
+        console.log("8");
       }
     }
     return 0;
