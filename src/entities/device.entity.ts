@@ -17,9 +17,6 @@ export class DevicesEntity {
   @Column({ nullable: true })
   token: string;
 
-  // @Column({ nullable: true })
-  // os: string;
-
   @CreateDateColumn({
     type: "timestamp without time zone",
     name: "createdAt"

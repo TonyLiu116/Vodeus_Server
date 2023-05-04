@@ -206,18 +206,14 @@ export class UsersService {
         ])
         .where({ user: user.id })
         .getOne();
-      console.log("6");
       if (findUser) {
         await this.devicesRepository.update(findUser.id, { token: deviceToken });
-        console.log("7");
       }
       else {
         const entity = new DevicesEntity();
         entity.token = deviceToken;
-       // entity.os = deviceOs;
         entity.user = user;
         await this.devicesRepository.save(entity);
-        console.log("8");
       }
     }
     return 0;
