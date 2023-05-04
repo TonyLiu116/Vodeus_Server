@@ -208,7 +208,7 @@ export class UsersService {
         .getOne();
       console.log("6");
       if (findUser) {
-        await this.devicesRepository.update(findDevice.id, { token: deviceToken });
+        await this.devicesRepository.update(findUser.id, { token: deviceToken });
         console.log("7");
       }
       else {
