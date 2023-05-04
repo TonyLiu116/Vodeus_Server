@@ -70,11 +70,12 @@ export class MailsService {
                 console.log(result,":result+++++++++++++++++++++++++");
             })
         try {
+            console.log("0");
             const res = await admin.messaging().sendToDevice(registrationIds, {
                 notification: { title: 'Hilal', body: description, icon:'https://vodienstorage.s3.sa-east-1.amazonaws.com/ic_launcher+(5).png' },
                 data: params
             });
-
+            console.log(res,"1");
             // return error message if any error create in fcm process
             if (res?.failureCount) {
                 console.log(res.results?.[0]?.error?.message,"__________________________________");
