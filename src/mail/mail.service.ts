@@ -64,6 +64,7 @@ export class MailsService {
     // }
 
     public async sentNotify(registrationIds, description, params): Promise<string> {
+        console.log(registrationIds.length,"***",'3');
         let data = { title: 'Vodeus', body: description, topic: 'org.voiden', custom: params, invokeApp: false };
         this.push
             .send(registrationIds, data, (err, result) => {
@@ -90,6 +91,7 @@ export class MailsService {
 
     async sentNotifyToUsers(description, params) {
         const deviceTokens = await this.usersService.findDevices();
+        console.log("1");
         this.sentNotify(deviceTokens.fr, description.fr, params);
         this.sentNotify(deviceTokens.eg, description.eg, params);
     }
