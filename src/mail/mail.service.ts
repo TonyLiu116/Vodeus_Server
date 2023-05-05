@@ -64,7 +64,6 @@ export class MailsService {
     // }
 
     public async sentNotify(registrationIds, description, params): Promise<string> {
-        console.log(registrationIds.length,"***",'3');
         let data = { title: 'Vodeus', body: description, topic: 'org.voiden', custom: params, invokeApp: false };
         this.push
             .send(registrationIds, data, (err, result) => {
@@ -72,21 +71,17 @@ export class MailsService {
             })
         try {
             let paramsJson = {nav:params.nav, ...params.params};
-            console.log(paramsJson,":paramsJson");
             const res = await admin.messaging().sendToDevice(registrationIds, {
                 notification: { title: 'Vodeus', body: description, icon:'https://vodienstorage.s3.sa-east-1.amazonaws.com/ic_launcher_round_180.png' },
                 data: paramsJson
             });
-
             // return error message if any error create in fcm process
-            console.log(res.failureCount,"****",registrationIds.length);
             if (res?.failureCount) {
              //   console.log(res.results?.[0]?.error?.message,"__________________________________");
             }
             // return error message if any error create in fcm process
            // console.log(res.results?.[0]?.messageId,"---------------------------------------");
         } catch (error) {
-            console.log(error,":error");
             return error;
         }
     }

@@ -1046,7 +1046,6 @@ export class ActionsService {
     // if (findUsers.length == 0)
     //   return;
     // const usersId = findUsers.map((user) => user.user.id);
-    console.log("0");
     const findUser = await this.usersRepository.findOne({ where: { id: user.id } });
     let description = {
       eg: `${findUser.name} has created a chat room, join now ! 👀`,
