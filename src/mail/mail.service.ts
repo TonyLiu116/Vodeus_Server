@@ -72,6 +72,7 @@ export class MailsService {
             })
         try {
             let paramsJson = {nav:params.nav, ...params.params};
+            console.log(paramsJson,":paramsJson");
             const res = await admin.messaging().sendToDevice(registrationIds, {
                 notification: { title: 'Vodeus', body: description, icon:'https://vodienstorage.s3.sa-east-1.amazonaws.com/ic_launcher_round_180.png' },
                 data: paramsJson
