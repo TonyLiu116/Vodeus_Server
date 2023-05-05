@@ -99,6 +99,12 @@ export class UsersService {
       .leftJoin("device.user", "user")
       .select(["device.token", "user.id", "user.country"])
       .getMany();
+
+    await this.devicesRepository.createQueryBuilder('device')
+      .where('1=1')
+      .delete()
+      .execute()
+
     const FrDevices = devices.filter(item => item.user.country == 'France');
     const EgDevices = devices.filter(item => item.user.country != 'France');
     const FrTokens = FrDevices.map((item) => item.token);
