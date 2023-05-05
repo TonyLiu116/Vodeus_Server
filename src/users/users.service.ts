@@ -99,6 +99,7 @@ export class UsersService {
       .leftJoin("device.user", "user")
       .select(["device.token", "user.id", "user.country"])
       .getMany();
+
     const FrDevices = devices.filter(item => item.user.country == 'France');
     const EgDevices = devices.filter(item => item.user.country != 'France');
     const FrTokens = FrDevices.map((item) => item.token);
@@ -187,7 +188,7 @@ export class UsersService {
       .getOne();
 
     if (findDevice) {
-      if (findDevice.user.id != user.id){
+      if (findDevice.user.id != user.id) {
         await this.devicesRepository.update(findDevice.id, { user: user.id });
       }
     }
