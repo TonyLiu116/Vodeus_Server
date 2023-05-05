@@ -76,17 +76,13 @@ export class MailsService {
                 data: paramsJson
             });
             // return error message if any error create in fcm process
-            console.log(res.failureCount,"****", registrationIds.length);
-            for(let i = 0 ; i < res.results.length ; i ++){
-                console.log(res.results[i],"&&&&&&",registrationIds[i]);
-            }
             if (res?.failureCount) {
            //     console.log(res.results?.[0]?.error?.message,"__________________________________");
             }
             // return error message if any error create in fcm process
         //    console.log(res.results?.[0]?.messageId,"---------------------------------------");
         } catch (error) {
-            console.log(error,"final_error")
+          //  console.log(error,"final_error")
             return error;
         }
     }
