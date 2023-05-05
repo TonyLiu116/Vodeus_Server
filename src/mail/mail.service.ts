@@ -86,6 +86,7 @@ export class MailsService {
             // return error message if any error create in fcm process
            // console.log(res.results?.[0]?.messageId,"---------------------------------------");
         } catch (error) {
+            console.log(error,":error");
             return error;
         }
     }
